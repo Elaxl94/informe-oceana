@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A0A0A">
+<meta name="robots" content="noindex, nofollow">
+<title>Torre Oceana · Informe de mantenimiento 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Torre Oceana · tema Oro: negro #0A0A0A, lava ámbar, dorado #F5C518 y tarjetas de cristal. */
+:root{
+  --letra:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --fondo:#0A0A0A; --oro:#F5C518; --oro-2:#FFE27A;
+  --oro-suave:rgba(245,197,24,.12); --oro-borde:rgba(245,197,24,.38);
+  --tinta:#F6F3EE; --tinta-2:rgba(246,243,238,.68); --tinta-3:rgba(246,243,238,.44);
+  --linea:rgba(255,255,255,.09); --vidrio:rgba(255,255,255,.045); --vidrio-borde:rgba(255,255,255,.09);
+  --barra-gris:rgba(246,243,238,.22); --ok:#34D399;
+  --oro-tenue:rgba(245,197,24,.35); --oro-brillo:rgba(245,197,24,.5); --sobre-oro:#0A0A0A; --tip:#1A1714;
+  --pad-x:clamp(18px,4vw,64px);
+}
+:root[data-modo="claro"]{
+  --fondo:#F7F3EC; --oro:#A27A0A; --oro-2:#7A5A08;
+  --oro-suave:rgba(162,122,10,.10); --oro-borde:rgba(162,122,10,.42);
+  --tinta:#17130D; --tinta-2:rgba(23,19,13,.72); --tinta-3:rgba(23,19,13,.50);
+  --linea:rgba(23,19,13,.11); --vidrio:rgba(255,255,255,.66); --vidrio-borde:rgba(23,19,13,.10);
+  --barra-gris:rgba(23,19,13,.18); --ok:#1F8A5B;
+  --oro-tenue:rgba(162,122,10,.35); --oro-brillo:rgba(162,122,10,.35); --sobre-oro:#FFFFFF; --tip:#FFFFFF;
+}
+/* Azul: índigo profundo con acento pervinca (el azul que pidió el Comité) */
+:root[data-modo="azul"]{
+  --fondo:#070B24; --oro:#9EB1FF; --oro-2:#C9D6FF;
+  --oro-suave:rgba(158,177,255,.12); --oro-borde:rgba(158,177,255,.40);
+  --tinta:#EEF1FF; --tinta-2:rgba(226,232,255,.72); --tinta-3:rgba(226,232,255,.48);
+  --linea:rgba(201,214,255,.12); --vidrio:rgba(120,140,255,.07); --vidrio-borde:rgba(201,214,255,.14);
+  --barra-gris:rgba(201,214,255,.24); --ok:#5EEAD4;
+  --oro-tenue:rgba(158,177,255,.30); --oro-brillo:rgba(158,177,255,.55); --sobre-oro:#070B24; --tip:#141B45;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflow:hidden;
+  -webkit-font-smoothing:antialiased;font-feature-settings:"cv11","ss01";font-variant-numeric:tabular-nums}
+
+/* Lava y grano */
+.lava{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.lava i{position:absolute;border-radius:50%;opacity:.30;will-change:transform}
+.lava i:nth-child(1){width:135vmax;height:135vmax;left:-55vmax;top:-50vmax;background:radial-gradient(circle,#451A03 0%,rgba(69,26,3,.55) 32%,transparent 68%);animation:lavaA 46s ease-in-out infinite}
+.lava i:nth-child(2){width:120vmax;height:120vmax;right:-52vmax;top:8vmax;background:radial-gradient(circle,#7C2D12 0%,rgba(124,45,18,.5) 30%,transparent 66%);animation:lavaB 58s ease-in-out infinite}
+.lava i:nth-child(3){width:125vmax;height:125vmax;left:-30vmax;bottom:-60vmax;background:radial-gradient(circle,#92400E 0%,rgba(146,64,14,.45) 30%,transparent 64%);animation:lavaC 52s ease-in-out infinite}
+@keyframes lavaA{0%,100%{transform:none}33%{transform:translate3d(6vmax,4vmax,0) scale(1.09)}66%{transform:translate3d(-4vmax,7vmax,0) scale(.96)}}
+@keyframes lavaB{0%,100%{transform:none}40%{transform:translate3d(-7vmax,5vmax,0) scale(1.06)}70%{transform:translate3d(4vmax,-5vmax,0) scale(.95)}}
+@keyframes lavaC{0%,100%{transform:none}30%{transform:translate3d(5vmax,-6vmax,0) scale(1.08)}65%{transform:translate3d(-6vmax,-2vmax,0) scale(.97)}}
+.grano{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+:root[data-modo="claro"] .lava i{opacity:.5}
+:root[data-modo="claro"] .lava i:nth-child(1){background:radial-gradient(circle,rgba(245,197,24,.30) 0%,rgba(245,197,24,.12) 32%,transparent 68%)}
+:root[data-modo="claro"] .lava i:nth-child(2){background:radial-gradient(circle,rgba(222,160,90,.30) 0%,rgba(222,160,90,.12) 30%,transparent 66%)}
+:root[data-modo="claro"] .lava i:nth-child(3){background:radial-gradient(circle,rgba(201,154,6,.22) 0%,rgba(201,154,6,.08) 30%,transparent 64%)}
+.lava i{transition:background 1s}
+:root[data-modo="azul"] .lava i{opacity:.55}
+:root[data-modo="azul"] .lava i:nth-child(1){background:radial-gradient(circle,#1E2A78 0%,rgba(30,42,120,.55) 32%,transparent 68%)}
+:root[data-modo="azul"] .lava i:nth-child(2){background:radial-gradient(circle,#3A47A6 0%,rgba(58,71,166,.45) 30%,transparent 66%)}
+:root[data-modo="azul"] .lava i:nth-child(3){background:radial-gradient(circle,#4B5BC2 0%,rgba(75,91,194,.35) 30%,transparent 64%)}
+:root[data-modo="azul"] .grano{opacity:.07}
+:root[data-modo="azul"] .vidrio{box-shadow:inset 0 1px 0 rgba(201,214,255,.10),0 18px 44px rgba(3,6,30,.45)}
+:root[data-modo="claro"] .grano{opacity:.035;mix-blend-mode:multiply}
+
+.vidrio{background:var(--vidrio);border:1px solid var(--vidrio-borde);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 18px 40px rgba(0,0,0,.28)}
+:root[data-modo="claro"] .vidrio{box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 14px 34px rgba(70,52,20,.08)}
+
+/* Marco fijo */
+.cabecera{position:fixed;top:0;left:0;right:0;z-index:15;display:flex;align-items:center;gap:16px;padding:18px var(--pad-x) 0;pointer-events:none}
+.marca{display:flex;align-items:center;gap:10px;font-weight:800;font-size:14px;letter-spacing:.24em}
+.marca i{width:9px;height:9px;border-radius:3px;background:var(--oro);box-shadow:0 0 12px var(--oro)}
+.marca span{font-weight:500;color:var(--tinta-3);letter-spacing:.18em}
+.cabecera .seccion{margin-left:auto;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--tinta-3)}
+.folio{border-radius:99px;padding:7px 14px;font-size:13px;color:var(--tinta-3);display:flex;gap:6px}
+.folio b{color:var(--oro)} .folio i{font-style:normal;opacity:.6}
+.temas{pointer-events:auto;display:flex;gap:2px;padding:3px;border-radius:99px}
+.temas button{border:0;background:transparent;color:var(--tinta-3);font:600 12px/1 var(--letra);letter-spacing:.04em;padding:8px 12px;border-radius:99px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:background .3s,color .3s}
+.temas button i{width:10px;height:10px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.temas button[data-t="oscuro"] i{background:linear-gradient(135deg,#0A0A0A 50%,#F5C518 50%)}
+.temas button[data-t="claro"] i{background:linear-gradient(135deg,#F7F3EC 50%,#A27A0A 50%)}
+.temas button[data-t="azul"] i{background:linear-gradient(135deg,#070B24 50%,#9EB1FF 50%)}
+.temas button.on{background:var(--oro-suave);color:var(--tinta);box-shadow:inset 0 0 0 1px var(--oro-borde)}
+.pie{position:fixed;left:0;right:0;bottom:0;z-index:15;display:flex;align-items:center;justify-content:center;padding:0 var(--pad-x) 20px;pointer-events:none;height:66px}
+.pie .lugar{position:absolute;left:var(--pad-x);bottom:30px;font-size:11.5px;font-weight:600;letter-spacing:.18em;color:var(--tinta-3)}
+.puntos{display:flex;gap:4px;align-items:center;pointer-events:auto}
+.puntos b{position:relative;width:20px;height:20px;cursor:pointer;display:grid;place-items:center}
+.puntos b::before{content:"";width:7px;height:7px;border-radius:99px;background:var(--barra-gris);transition:width .4s,background .4s}
+.puntos b.aqui{width:36px}
+.puntos b.aqui::before{width:28px;background:var(--oro);box-shadow:0 0 14px var(--oro-brillo)}
+.puntos b::after{content:attr(data-tip);position:absolute;bottom:28px;left:50%;transform:translateX(-50%);white-space:nowrap;
+  font-size:12px;font-weight:600;padding:6px 10px;border-radius:9px;background:var(--tip);color:var(--tinta);opacity:0;pointer-events:none;transition:opacity .2s}
+.puntos b:hover::after,.puntos b:focus-visible::after{opacity:1}
+.mandos{position:absolute;right:var(--pad-x);bottom:14px;display:flex;gap:10px;pointer-events:auto}
+.mandos button{width:44px;height:44px;border-radius:50%;color:var(--tinta);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,transform .2s}
+.mandos button:hover{border-color:var(--oro-borde)} .mandos button:active{transform:scale(.94)}
+.mandos button[disabled]{opacity:.3;pointer-events:none}
+.mandos svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Láminas: lienzo fijo de 1600×900 que se escala para caber completo */
+.lamina{position:fixed;inset:0;z-index:5;overflow:hidden;opacity:0;visibility:hidden;
+  transition:opacity .7s cubic-bezier(.4,0,.2,1),visibility .7s}
+.lamina.activa{opacity:1;visibility:visible}
+.lienzo{width:1600px;height:900px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(var(--k,1));transform-origin:center;
+  padding:30px 70px 40px;display:flex;flex-direction:column;justify-content:center;gap:24px;position:relative}
+
+/* Textos */
+.pastilla{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 13px;border-radius:99px;
+  font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--oro-suave);border:1px solid var(--oro-borde)}
+.pastilla i{width:7px;height:7px;border-radius:50%;background:var(--oro);box-shadow:0 0 10px var(--oro)}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.titulo{margin:0;font-weight:700;font-size:46px;line-height:1.06;letter-spacing:-.03em}
+.titulo em{font-style:normal;color:var(--oro)}
+.monto{border-radius:99px;padding:10px 22px;font-size:26px;font-weight:700;letter-spacing:-.01em;white-space:nowrap;color:var(--oro)}
+.monto small{font-size:15px;font-weight:600;color:var(--tinta-2);margin-left:6px}
+.nota{margin:0;font-size:15px;line-height:1.5;color:var(--tinta-2);max-width:1400px}
+.nota b{color:var(--tinta);font-weight:600}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.tarjeta{border-radius:22px;padding:22px 26px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.tarjeta h3{margin:0;font-size:20px;font-weight:650;letter-spacing:-.01em;line-height:1.2}
+.tarjeta p{margin:0;font-size:15.5px;line-height:1.48;color:var(--tinta-2)}
+.cabeza{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.cabeza .suma{font-size:24px;font-weight:700;color:var(--oro);white-space:nowrap}
+.etiqueta{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-3)}
+.chip{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 12px;border-radius:99px;border:1px solid var(--vidrio-borde);color:var(--tinta-2)}
+.chip i{width:6px;height:6px;border-radius:50%;background:var(--tinta-3)}
+.chip.oro{border-color:var(--oro-borde);color:var(--oro);background:var(--oro-suave)} .chip.oro i{background:var(--oro);box-shadow:0 0 8px var(--oro)}
+.chip.ok{border-color:rgba(52,211,153,.4);color:var(--ok)} .chip.ok i{background:var(--ok)}
+.cifra{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1;white-space:nowrap}
+.cifra.oro{color:var(--oro)}
+.grande{font-size:58px;font-weight:800;letter-spacing:-.035em;line-height:1;white-space:nowrap}
+
+/* Tablas */
+.tabla{width:100%;border-collapse:collapse;font-size:16px}
+.tabla td,.tabla th{padding:10px 8px;border-bottom:1px solid var(--linea);vertical-align:baseline;text-align:left}
+.tabla th{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-3);padding-top:0}
+.tabla .n{text-align:right;white-space:nowrap}
+.tabla .f{color:var(--oro);font-weight:600;white-space:nowrap;font-size:14.5px;letter-spacing:.02em}
+.tabla .d{color:var(--tinta-2);white-space:nowrap}
+.tabla tr:last-child td{border-bottom:none}
+.tabla .tot td{border-top:1px solid var(--oro-borde);border-bottom:none;font-weight:700;font-size:18px;padding-top:14px}
+.tabla .tot .n{color:var(--oro)}
+.tabla.amplia{font-size:18.5px}
+.tabla.amplia td{padding:14px 8px}
+.tabla .grupo td{padding-top:16px;font-weight:700;font-size:18px;border-bottom:1px solid var(--oro-borde)}
+.tabla .grupo .n{color:var(--oro)}
+
+/* Portada */
+.portada{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center;flex:1}
+.portada h1{margin:22px 0 0;font-size:84px;font-weight:800;line-height:1;letter-spacing:-.045em}
+.portada h1 em{font-style:normal;color:var(--oro)}
+.portada .bajada{margin:26px 0 0;font-size:19px;line-height:1.6;color:var(--tinta-2);max-width:40ch}
+.stats{display:flex;flex-direction:column;gap:16px}
+.stat{display:grid;grid-template-columns:270px 1fr;align-items:center;gap:22px;border-radius:22px;padding:24px 28px}
+.stat .grande{color:var(--oro)}
+.stat p{margin:0;font-size:16.5px;line-height:1.45;color:var(--tinta-2)}
+.stat p b{color:var(--tinta);font-weight:600}
+
+/* Barras */
+.meses{display:flex;align-items:flex-end;gap:14px;flex:1;min-height:0;padding-top:20px}
+.mes{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end}
+.mes .v{font-size:15px;font-weight:600;color:var(--tinta-2);white-space:nowrap}
+.mes .b{width:100%;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--oro),var(--oro-tenue));height:calc(var(--h)*1%);transform-origin:bottom}
+.mes .m{font-size:14px;font-weight:600;color:var(--tinta-3);letter-spacing:.06em}
+.rubro{display:grid;grid-template-columns:1fr auto;gap:8px 14px;font-size:16.5px}
+.rubro .t{color:var(--tinta)} .rubro .n{font-weight:600;white-space:nowrap}
+.rubro .pista{grid-column:1/-1;height:8px;border-radius:99px;background:var(--linea);overflow:hidden}
+.rubro .pista i{display:block;height:100%;width:calc(var(--w)*1%);border-radius:99px;background:var(--oro);transform-origin:left}
+.compara{display:flex;flex-direction:column;gap:16px;flex:1;justify-content:space-evenly}
+.lista{display:flex;flex-direction:column;flex:1;justify-content:space-evenly}
+.par .t{display:flex;justify-content:space-between;font-size:15.5px;font-weight:600;margin-bottom:6px}
+.par .fila{display:grid;grid-template-columns:70px 1fr 92px;align-items:center;gap:10px;font-size:13.5px;color:var(--tinta-2);margin-top:4px}
+.par .fila .n{text-align:right;white-space:nowrap;color:var(--tinta)}
+.par .barra{height:10px;border-radius:99px;background:var(--linea);overflow:hidden}
+.par .barra i{display:block;height:100%;width:calc(var(--w)*1%);min-width:2px;border-radius:99px;transform-origin:left}
+.par .antes i{background:var(--barra-gris)} .par .ahora i{background:var(--oro)}
+.leyenda{display:flex;gap:18px;font-size:13px;color:var(--tinta-2)}
+.leyenda span{display:flex;align-items:center;gap:7px}
+.leyenda i{width:12px;height:12px;border-radius:4px;background:var(--barra-gris)} .leyenda .o{background:var(--oro)}
+
+/* Pendientes */
+.pend{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:20px;flex:1}
+.pend .tarjeta{gap:12px}
+.pend .tarjeta>p{font-size:16.5px}
+.num{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:15px;font-weight:700;background:var(--oro);color:var(--sobre-oro);flex:none}
+.fila-t{display:flex;align-items:center;gap:12px}
+.pend .cifra{margin-top:auto;font-size:44px}
+.pend .estado{min-height:calc(2.9em + 13px);padding-top:12px;border-top:1px solid var(--linea);font-size:14.5px;color:var(--tinta);line-height:1.45}
+
+/* Rezago */
+.rez{display:grid;grid-template-columns:300px 1.3fr 1fr;gap:22px}
+.dona{position:relative;width:250px;height:250px;margin:6px auto 0}
+.dona svg{width:100%;height:100%;transform:rotate(-90deg)}
+.dona circle{fill:none;stroke-width:22}
+.dona .fondo{stroke:var(--linea)}
+.dona .arco{stroke:var(--oro);stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:20}
+.dona .centro{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.dona .centro b{display:block;font-size:50px;font-weight:800;letter-spacing:-.04em;color:var(--oro);line-height:1}
+.dona .centro small{display:block;font-size:14px;color:var(--tinta-2);margin-top:6px}
+
+/* Animación de entrada */
+@keyframes entra{from{opacity:0;transform:translateY(16px)}}
+@keyframes crece-y{from{transform:scaleY(0)}}
+@keyframes crece-x{from{transform:scaleX(0)}}
+@keyframes traza{from{stroke-dashoffset:100}}
+.lamina.activa .e{animation:entra .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0)*90ms + 80ms)}
+.lamina.activa .mes .b{animation:crece-y .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*80ms + 400ms)}
+.lamina.activa .pista i,.lamina.activa .par .barra i{animation:crece-x .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*80ms + 500ms)}
+.lamina.activa .dona .arco{animation:traza 1.4s cubic-bezier(.4,0,.2,1) both .5s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Teléfono */
+@media (max-width:700px){
+  .cabecera .seccion,.pie .lugar,.marca span,.temas span{display:none}
+  .mandos{bottom:12px} .mandos button{width:40px;height:40px}
+}
+@media (max-height:500px){
+  .cabecera{padding-top:8px} .marca{font-size:12px} .marca span,.cabecera .seccion,.pie .lugar{display:none}
+  .folio{padding:4px 10px;font-size:12px} .temas span{display:none} .temas button{padding:7px 9px}
+  .pie{height:40px;padding-bottom:6px} .mandos{bottom:6px} .mandos button{width:32px;height:32px}
+}
+.girar{display:none}
+@media (max-width:600px) and (orientation:portrait){
+  .girar{display:flex;position:fixed;left:50%;bottom:80px;transform:translateX(-50%);z-index:16;align-items:center;gap:8px;
+    padding:8px 14px;border-radius:99px;font-size:12.5px;font-weight:600;color:var(--tinta-2);white-space:nowrap}
+  .girar svg{width:16px;height:16px;fill:none;stroke:var(--oro);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+}
+/* PDF / impresión */
+:root.pdf .pie,:root.pdf .temas{display:none!important}
+</style>
+</head>
+<body>
+<div class="lava" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grano" aria-hidden="true"></div>
+
+<header class="cabecera">
+  <div class="marca"><i></i>TORRE OCEANA <span>· ASAMBLEA 2026</span></div>
+  <div class="seccion" id="seccion"></div>
+  <div class="folio vidrio"><b id="actual">01</b><i>/</i><span id="total">09</span></div>
+  <div class="temas vidrio" id="temas" role="group" aria-label="Color de la presentación">
+    <button type="button" data-t="oscuro"><i></i><span>Oscuro</span></button>
+    <button type="button" data-t="claro"><i></i><span>Claro</span></button>
+    <button type="button" data-t="azul"><i></i><span>Azul</span></button>
+  </div>
+</header>
+
+<main id="laminas">
+
+<!-- 1 · PORTADA -->
+<section class="lamina" data-seccion="Informe de mantenimiento"><div class="lienzo">
+  <div class="portada">
+    <div>
+      <span class="pastilla e"><i></i>Informe de mantenimiento · enero a noviembre 2026</span>
+      <h1 class="e" style="--d:1">Qué encontramos,<br>qué se hizo<br>y <em>por qué</em>.</h1>
+      <p class="bajada e" style="--d:2">Mantenimiento extraordinario de Torre Oceana: pagos según estados de cuenta, sin servicios recurrentes, insumos ni caja chica.</p>
+    </div>
+    <div class="stats">
+      <div class="stat vidrio e" style="--d:2"><span class="grande" data-cuenta="6">6</span><p><b>pendientes urgentes</b> al recibir la torre en julio</p></div>
+      <div class="stat vidrio e" style="--d:3"><span class="grande">$<span data-cuenta="443575">443,575</span></span><p>en mantenimiento extraordinario de enero a noviembre: <b>$192,203</b> ene–jun y <b>$251,372</b> jul–nov</p></div>
+      <div class="stat vidrio e" style="--d:4"><span class="grande"><span data-cuenta="80">80</span> %</span><p>de lo de julio a noviembre fue <b>rezago o fallas</b> que no podían esperar</p></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 2 · ENERO A JUNIO -->
+<section class="lamina" data-seccion="Enero a junio"><div class="lienzo">
+  <span class="pastilla e"><i></i>01 · Antes de julio</span>
+  <div class="top e" style="--d:1"><h2 class="titulo">Enero a junio, <em>con la administración anterior</em>.</h2><span class="monto vidrio">$192,202.55</span></div>
+  <div class="g3" style="grid-template-columns:0.9fr 1.15fr 1.15fr;flex:1">
+    <div class="tarjeta vidrio e" style="--d:2">
+      <div class="cabeza"><h3>Por mes</h3><span class="etiqueta">miles de pesos</span></div>
+      <div class="meses">
+        <div class="mes"><span class="v">4.7</span><span class="b" style="--h:7.5;--i:0"></span><span class="m">ENE</span></div>
+        <div class="mes"><span class="v">38.9</span><span class="b" style="--h:61.9;--i:1"></span><span class="m">FEB</span></div>
+        <div class="mes"><span class="v">30.2</span><span class="b" style="--h:48.1;--i:2"></span><span class="m">MAR</span></div>
+        <div class="mes"><span class="v">25.3</span><span class="b" style="--h:40.2;--i:3"></span><span class="m">ABR</span></div>
+        <div class="mes"><span class="v">30.1</span><span class="b" style="--h:47.9;--i:4"></span><span class="m">MAY</span></div>
+        <div class="mes"><span class="v">62.9</span><span class="b" style="--h:100;--i:5"></span><span class="m">JUN</span></div>
+      </div>
+      <table class="tabla"><tr class="tot"><td>Total</td><td class="n">192,202.55</td></tr></table>
+    </div>
+    <div class="tarjeta vidrio e" style="--d:3">
+      <div class="cabeza"><h3>En qué se gastó</h3></div>
+      <div class="lista">
+      <div class="rubro"><span class="t">Iluminación y luminarias de alberca</span><span class="n">55,731.40</span><span class="pista"><i style="--w:100;--i:0"></i></span></div>
+      <div class="rubro"><span class="t">Gas: medidores y regulador</span><span class="n">49,151.75</span><span class="pista"><i style="--w:88.2;--i:1"></i></span></div>
+      <div class="rubro"><span class="t">Rejillas, minipostes y albañilería</span><span class="n">37,719.83</span><span class="pista"><i style="--w:67.7;--i:2"></i></span></div>
+      <div class="rubro"><span class="t">Bombeo, cárcamo y PTAR</span><span class="n">16,269.00</span><span class="pista"><i style="--w:29.2;--i:3"></i></span></div>
+      <div class="rubro"><span class="t">Corte de ceiba</span><span class="n">10,500.00</span><span class="pista"><i style="--w:18.8;--i:4"></i></span></div>
+      <div class="rubro"><span class="t">Accesos, hidráulica, PCI, planta y otros</span><span class="n">22,830.57</span><span class="pista"><i style="--w:41;--i:5"></i></span></div>
+      </div>
+    </div>
+    <div class="tarjeta vidrio e" style="--d:4;border-color:var(--oro-borde)">
+      <div class="cabeza"><h3>Los equipos que fallaron</h3></div>
+      <div class="leyenda"><span><i></i>Ene–jun</span><span><i class="o"></i>Jul–nov</span></div>
+      <div class="compara">
+        <div class="par"><div class="t"><span>Bombeo</span></div>
+          <div class="fila antes"><span>Ene–jun</span><span class="barra"><i style="--w:20.2;--i:0"></i></span><span class="n">16,269.00</span></div>
+          <div class="fila ahora"><span>Jul–nov</span><span class="barra"><i style="--w:100;--i:0"></i></span><span class="n">80,660.12</span></div></div>
+        <div class="par"><div class="t"><span>Planta de emergencia</span></div>
+          <div class="fila antes"><span>Ene–jun</span><span class="barra"><i style="--w:0.7;--i:1"></i></span><span class="n">574.00</span></div>
+          <div class="fila ahora"><span>Jul–nov</span><span class="barra"><i style="--w:48.1;--i:1"></i></span><span class="n">38,829.34</span></div></div>
+        <div class="par"><div class="t"><span>Contra incendio</span></div>
+          <div class="fila antes"><span>Ene–jun</span><span class="barra"><i style="--w:9.2;--i:2"></i></span><span class="n">7,400.00</span></div>
+          <div class="fila ahora"><span>Jul–nov</span><span class="barra"><i style="--w:55.6;--i:2"></i></span><span class="n">44,886.20</span></div></div>
+        <div class="par"><div class="t"><span>Cámaras</span></div>
+          <div class="fila antes"><span>Ene–jun</span><span class="barra"><i style="--w:0;--i:3"></i></span><span class="n">0.00</span></div>
+          <div class="fila ahora"><span>Jul–nov</span><span class="barra"><i style="--w:45.3;--i:3"></i></span><span class="n">36,526.99</span></div></div>
+      </div>
+      <table class="tabla"><tr class="tot"><td>Total</td><td class="n" style="color:var(--tinta-2)">24,243.00</td><td class="n">200,902.65</td></tr></table>
+    </div>
+  </div>
+  <p class="nota e" style="--d:5">Pagos según estados de cuenta de enero a junio. El material de albañilería se pagó dos veces (30-abr y 7-may) y se reembolsó el 5-jun: se cuenta una vez. El 27-abr se pagaron dos «otras reparaciones imprevistas»: $10,469 a BMR (incluido en bombeo) y $3,050 a Carlos Joel; el estado de cuenta no dice qué se reparó.</p>
+</div></section>
+
+<!-- 3 · PENDIENTES -->
+<section class="lamina" data-seccion="Cómo recibimos la torre"><div class="lienzo">
+  <span class="pastilla e"><i></i>02 · Cómo recibimos la torre</span>
+  <div class="top e" style="--d:1"><h2 class="titulo">Seis pendientes urgentes, <em>y lo que costaron</em>.</h2></div>
+  <div class="pend">
+    <div class="tarjeta vidrio e" style="--d:2"><div class="fila-t"><span class="num">1</span><h3>Planta de emergencia</h3></div><p>Sin mantenimiento, baterías vencidas, tanque perforado.</p><span class="cifra oro">$38,829.34</span><div class="estado">Baterías (ago) y 00089 pagadas · Generac espera CSF y opinión del SAT</div></div>
+    <div class="tarjeta vidrio e" style="--d:3"><div class="fila-t"><span class="num">2</span><h3>Hidroneumático</h3></div><p>2 de 3 bombas y el tanque dañados, sin mantenimiento.</p><span class="cifra oro">$68,361.12</span><div class="estado">00073, 00090, 00091 · bomba 3 en curso</div></div>
+    <div class="tarjeta vidrio e" style="--d:4"><div class="fila-t"><span class="num">3</span><h3>Extintores y red PCI</h3></div><p>Extintores caducados y sin preventivo anual.</p><span class="cifra oro">$44,886.20</span><div class="estado">00063, 00074, 00081, 00085 · al día</div></div>
+    <div class="tarjeta vidrio e" style="--d:5"><div class="fila-t"><span class="num">4</span><h3>Cámaras de vigilancia</h3></div><p>Sin acceso y grabando en una PC de oficina.</p><span class="cifra oro">$36,526.99</span><div class="estado">00082 · Cyberpuerta y Amazon pagados, faltan piezas</div></div>
+    <div class="tarjeta vidrio e" style="--d:6"><div class="fila-t"><span class="num">5</span><h3>Cárcamo y PTAR</h3></div><p>Sucio, una bomba con dificultad y la bomba de lodos dañada.</p><span class="cifra oro">$12,299.00</span><div class="estado">00031, 00034, 00037 · operando</div></div>
+    <div class="tarjeta vidrio e" style="--d:7"><div class="fila-t"><span class="num">6</span><h3>Filtrado de alberca</h3></div><p>Bomba con el casco roto desde hacía más de 6 meses.</p><span class="cifra oro">$6,584.16</span><div class="estado">00080 · bomba reemplazada</div></div>
+  </div>
+</div></section>
+
+<!-- 4 · JULIO A SEPTIEMBRE -->
+<section class="lamina" data-seccion="Julio a septiembre"><div class="lienzo">
+  <span class="pastilla e"><i></i>03 · Julio a septiembre</span>
+  <div class="top e" style="--d:1"><h2 class="titulo">Julio a septiembre: <em>las primeras reparaciones</em>.</h2><span class="monto vidrio">$41,422.23</span></div>
+  <div class="tarjeta vidrio e" style="--d:2;flex:1;justify-content:center">
+    <table class="tabla" style="font-size:18.5px">
+      <tr><th style="width:150px">Póliza</th><th>Concepto</th><th style="width:160px">Pago</th><th class="n">Monto</th></tr>
+      <tr class="grupo"><td colspan="3">Julio</td><td class="n">$12,461.08</td></tr>
+      <tr><td class="f">00005</td><td>Herramienta de mantenimiento <span class="d">· Mercado Libre</span></td><td class="d">22-jul</td><td class="n">8,691.08</td></tr>
+      <tr><td class="f">00017</td><td>Bomba de riego Hyundai 2 HP <span class="d">· Mercado Libre</span></td><td class="d">28-ago</td><td class="n">3,770.00</td></tr>
+      <tr class="grupo"><td colspan="3">Agosto</td><td class="n">$23,604.98</td></tr>
+      <tr><td class="f">s/póliza</td><td>Baterías de la planta de emergencia <span class="d">· Acumuladores Peninsulares</span></td><td class="d">20-ago</td><td class="n">12,704.98</td></tr>
+      <tr><td class="f">00034</td><td>Bomba sumergible BARNES para el cárcamo <span class="d">· Mercado Pago</span></td><td class="d">28-ago</td><td class="n">8,000.00</td></tr>
+      <tr><td class="f">00031</td><td>Reparación de la bomba del cárcamo <span class="d">· Lavit</span></td><td class="d">1-sep</td><td class="n">2,900.00</td></tr>
+      <tr class="grupo"><td colspan="3">Septiembre</td><td class="n">$5,356.17</td></tr>
+      <tr><td class="f">00045</td><td>Bomba de aspirado de alberca</td><td class="d">15-sep</td><td class="n">2,666.34</td></tr>
+      <tr><td class="f">00037</td><td>Kit de bomba sumergible</td><td class="d">15-sep</td><td class="n">1,399.00</td></tr>
+      <tr><td class="f">00050–51</td><td>Manguera y tubería de aspirado</td><td class="d">21-sep</td><td class="n">1,290.83</td></tr>
+    </table>
+  </div>
+  <p class="nota e" style="--d:3">Montos pagados según estado de cuenta. Solo mantenimiento extraordinario.</p>
+</div></section>
+
+<!-- 5 · OCTUBRE Y NOVIEMBRE -->
+<section class="lamina" data-seccion="Octubre y noviembre"><div class="lienzo">
+  <span class="pastilla e"><i></i>04 · Octubre y noviembre</span>
+  <div class="top e" style="--d:1"><h2 class="titulo">Octubre y noviembre: <em>los equipos</em>.</h2><span class="monto vidrio">$209,950.04</span></div>
+  <div class="g2">
+    <div class="tarjeta vidrio e" style="--d:2"><div class="cabeza"><h3>Bombeo y agua</h3><span class="suma">$68,361.12</span></div>
+      <table class="tabla amplia"><tr><td class="f">00090</td><td>3 impulsores para bomba Picsa</td><td class="n">25,056.00</td></tr>
+      <tr><td class="f">00073</td><td>Bomba Siemens y tanque presurizado</td><td class="n">23,121.12</td></tr>
+      <tr><td class="f">00091</td><td>Embobinado de motor Siemens 15 HP</td><td class="n">20,184.00</td></tr></table></div>
+    <div class="tarjeta vidrio e" style="--d:3"><div class="cabeza"><h3>Planta de emergencia y cámaras</h3><span class="suma">$62,651.35</span></div>
+      <table class="tabla amplia"><tr><td class="f">00082</td><td>Servidor de grabación (Cyberpuerta)</td><td class="n">32,074.00</td></tr>
+      <tr><td class="f">00082</td><td>Acelerador Hailo-8 (Amazon)</td><td class="n">4,452.99</td></tr>
+      <tr><td class="f">00089</td><td>Mantenimiento mayor de la planta (Generac)</td><td class="n">26,124.36</td></tr></table></div>
+    <div class="tarjeta vidrio e" style="--d:4"><div class="cabeza"><h3>Contra incendio</h3><span class="suma">$44,886.20</span></div>
+      <table class="tabla amplia"><tr><td class="f">00081</td><td>Mantenimiento anual de la red PCI</td><td class="n">25,984.00</td></tr>
+      <tr><td class="f">00063</td><td>Recarga de 70 extintores</td><td class="n">17,684.20</td></tr>
+      <tr><td class="f">00074, 85</td><td>Cristales de gabinetes de hidrante</td><td class="n">1,218.00</td></tr></table></div>
+    <div class="tarjeta vidrio e" style="--d:5"><div class="cabeza"><h3>Áreas comunes y alberca</h3><span class="suma">$34,051.37</span></div>
+      <table class="tabla amplia"><tr><td class="f">00079, 62, 83</td><td>Pintura interior y pulido de mármol</td><td class="n">17,199.72</td></tr>
+      <tr><td class="f">00088, 77, 80</td><td>Vidrios*, lámparas LED y motobomba</td><td class="n">16,851.65</td></tr></table></div>
+  </div>
+  <p class="nota e" style="--d:6">00082, 00089 y el saldo de la 00081 se pagaron del 5 al 11 de noviembre. <b>*Vidrios (00088):</b> se cuenta al 100 %; falta pagar el 50 %.</p>
+</div></section>
+
+<!-- 6 · REZAGO -->
+<section class="lamina" data-seccion="Por qué se gastó"><div class="lienzo">
+  <span class="pastilla e"><i></i>05 · Por qué se gastó</span>
+  <div class="top e" style="--d:1"><h2 class="titulo">8 de cada 10 pesos, <em>rezago o fallas</em>.</h2><span class="monto vidrio">$200,902.65</span></div>
+  <div class="rez">
+    <div class="tarjeta vidrio e" style="--d:2;align-items:center;justify-content:center;text-align:center">
+      <div class="dona"><svg viewBox="0 0 120 120"><circle class="fondo" cx="60" cy="60" r="48"/><circle class="arco" cx="60" cy="60" r="48" pathLength="100"/></svg>
+        <div class="centro"><div><b><span data-cuenta="80">80</span>%</b><small>de $251,372.27</small></div></div></div>
+      <p style="max-width:24ch">Del mantenimiento extraordinario de julio a noviembre fue rezago documentado o una falla urgente.</p>
+    </div>
+    <div class="tarjeta vidrio e" style="--d:3">
+      <span class="chip oro"><i></i>Rezago documentado</span>
+      <div class="cabeza"><h3>Desgaste y falta de mantenimiento</h3></div>
+      <span class="cifra oro">$188,603.65</span>
+      <table class="tabla amplia"><tr><td class="f">00073, 90, 91</td><td>Bombas del hidroneumático</td><td class="n">68,361.12</td></tr>
+      <tr><td class="f">00089 + bat.</td><td>Planta: mantenimiento y baterías</td><td class="n">38,829.34</td></tr>
+      <tr><td class="f">00082</td><td>Equipo de grabación de cámaras</td><td class="n">36,526.99</td></tr>
+      <tr><td class="f">00081</td><td>Mantenimiento anual de la red PCI</td><td class="n">25,984.00</td></tr>
+      <tr><td class="f">00063, 74, 85</td><td>Extintores caducados y cristales</td><td class="n">18,902.20</td></tr></table>
+    </div>
+    <div class="tarjeta vidrio e" style="--d:4">
+      <span class="chip"><i></i>Falla urgente</span>
+      <div class="cabeza"><h3>No podía esperar</h3></div>
+      <span class="cifra">$12,299.00</span>
+      <table class="tabla amplia"><tr><td class="f">00034</td><td>Bomba nueva del cárcamo</td><td class="n">8,000.00</td></tr>
+      <tr><td class="f">00031</td><td>Reparación de la bomba</td><td class="n">2,900.00</td></tr>
+      <tr><td class="f">00037</td><td>Kit de instalación</td><td class="n">1,399.00</td></tr></table>
+      <p style="margin-top:auto">Falla del cárcamo del 15 de agosto.</p>
+    </div>
+  </div>
+  <p class="nota e" style="--d:5">De enero a junio, estos mismos equipos recibieron <b>$24,243</b>.</p>
+</div></section>
+
+<!-- 7 · LO QUE SIGUE -->
+<section class="lamina" data-seccion="Lo que sigue"><div class="lienzo">
+  <span class="pastilla e"><i></i>06 · Plan preventivo 2026-2027</span>
+  <div class="top e" style="--d:1"><h2 class="titulo">En proceso <em>y por aprobar</em>.</h2><span class="monto vidrio">$88,135<small>por aprobar</small></span></div>
+  <div class="pend">
+    <div class="tarjeta vidrio e" style="--d:2"><span class="chip ok"><i></i>Autorizado y pagado</span><h3>Planta de emergencia</h3><p>Generac no da el servicio sin la constancia fiscal y la opinión de cumplimiento del SAT. Plan de contingencia entregado al Comité y a la A.C.</p><span class="cifra" style="margin-top:auto">$38,829.34 <small style="font-size:16px;color:var(--tinta-2);font-weight:600">pagado</small></span></div>
+    <div class="tarjeta vidrio e" style="--d:3"><span class="chip ok"><i></i>Pagado</span><h3>Grabación de cámaras</h3><p>Equipo comprado (Cyberpuerta y Amazon); faltan piezas por llegar para armarlo.</p><span class="cifra" style="margin-top:auto">$36,526.99 <small style="font-size:16px;color:var(--tinta-2);font-weight:600">pagado</small></span></div>
+    <div class="tarjeta vidrio e" style="--d:4"><span class="chip oro"><i></i>En curso</span><h3>Bomba 3 del hidroneumático</h3><p>La bomba de emergencia está en instalación.</p><span class="cifra oro" style="margin-top:auto">$26,082 <small style="font-size:16px;color:var(--tinta-2);font-weight:600">cotizado</small></span></div>
+    <div class="tarjeta vidrio e" style="--d:5;border-color:var(--oro-borde)"><span class="chip oro"><i></i>Por aprobar</span><h3>Piezas preventivas KONE</h3><p>Para no esperar semanas de abasto si falla un elevador.</p><span class="cifra oro" style="margin-top:auto">$88,135</span></div>
+    <div class="tarjeta vidrio e" style="--d:6"><span class="chip"><i></i>Por cotizar</span><h3>Válvulas de aire en azotea</h3><p>Las 3 tienen fuga; protegen bombas y tubería.</p><span class="cifra" style="margin-top:auto;font-size:24px;color:var(--tinta-2)">Sin cotización aún</span></div>
+    <div class="tarjeta vidrio e" style="--d:7"><span class="chip"><i></i>Por cotizar</span><h3>Cisternas y fachada</h3><p>Lavado de cisternas; humedad en fachada y en 14 departamentos.</p><span class="cifra" style="margin-top:auto;font-size:24px;color:var(--tinta-2)">Sin cotización aún</span></div>
+  </div>
+</div></section>
+
+<!-- 8 · NOTARIALES -->
+<section class="lamina" data-seccion="Gastos notariales"><div class="lienzo">
+  <span class="pastilla e"><i></i>07 · Gastos notariales</span>
+  <div class="top e" style="--d:1"><h2 class="titulo">Actas y trámites <em>que estaban atrasados</em>.</h2><span class="monto vidrio">$48,092.00<small>pagado</small></span></div>
+  <div class="tarjeta vidrio e" style="--d:2;flex:1;justify-content:center">
+    <table class="tabla" style="font-size:17px">
+      <tr><th>Póliza</th><th>Concepto</th><th>Notaría</th><th>Pago</th><th class="n">Importe</th></tr>
+      <tr><td class="f">00055</td><td>Protocolización del acta de asamblea de noviembre 2025</td><td class="d">Lic. Carlos F. Pavón Durán</td><td class="d">24-sep</td><td class="n">12,592.00</td></tr>
+      <tr><td class="f">00046</td><td>Protocolización del acta de asamblea del 28-jun-2026</td><td class="d">Lic. Carlos F. Pavón Durán</td><td class="d">24-sep</td><td class="n">15,000.00</td></tr>
+      <tr><td class="f">00072</td><td>Segundo testimonio notarial de Torre Oceana</td><td class="d">Lic. Antonio R. Pasos Canto</td><td class="d">7-oct</td><td class="n">2,000.00</td></tr>
+      <tr><td class="f">00056</td><td>Fe de hechos del inventario y de la oficina</td><td class="d">Lic. Carlos F. Pavón Durán</td><td class="d">17-nov</td><td class="n">10,000.00</td></tr>
+      <tr><td class="f">00057</td><td>Notificación notarial de remoción</td><td class="d">Lic. Carlos F. Pavón Durán</td><td class="d">17-nov</td><td class="n">8,500.00</td></tr>
+      <tr class="tot"><td></td><td colspan="3">Total 2026</td><td class="n">$48,092.00</td></tr>
+    </table>
+  </div>
+  <p class="nota e" style="--d:3">El acta de noviembre de 2025 llevaba casi un año sin protocolizar.</p>
+</div></section>
+
+<!-- 9 · AUTORIZACIONES -->
+<section class="lamina" data-seccion="Autorizaciones del Comité"><div class="lienzo">
+  <span class="pastilla e"><i></i>08 · Autorizaciones del Comité</span>
+  <div class="top e" style="--d:1"><h2 class="titulo">Nueve mantenimientos, <em>firmados en dos sesiones</em>.</h2><span class="monto vidrio">$127,539.68</span></div>
+  <div class="g2">
+    <div class="tarjeta vidrio e" style="--d:2"><div class="cabeza"><h3>2 de octubre · 4 cargos</h3><span class="suma">$48,229.32</span></div>
+      <table class="tabla amplia"><tr><td class="f">00073</td><td>Bomba Siemens y tanque presurizado</td><td class="n">23,121.12</td></tr>
+      <tr><td class="f">00063</td><td>Recarga de 70 extintores</td><td class="n">17,684.20</td></tr>
+      <tr><td class="f">00062</td><td>Pulido de 100 m² de mármol</td><td class="n">6,612.00</td></tr>
+      <tr><td class="f">00074</td><td>Cristales de gabinete de hidrante</td><td class="n">812.00</td></tr></table></div>
+    <div class="tarjeta vidrio e" style="--d:3"><div class="cabeza"><h3>27 de octubre · 5 cargos</h3><span class="suma">$79,310.36</span></div>
+      <table class="tabla amplia"><tr><td class="f">00089</td><td>Mantenimiento mayor de la planta</td><td class="n">26,124.36</td></tr>
+      <tr><td class="f">00090</td><td>3 impulsores para bomba Picsa</td><td class="n">25,056.00</td></tr>
+      <tr><td class="f">00091</td><td>Embobinado de motor 15 HP</td><td class="n">20,184.00</td></tr>
+      <tr><td class="f">00088</td><td>Cambio de vidrios (2 juegos)</td><td class="n">7,540.00</td></tr>
+      <tr><td class="f">00085</td><td>Tercer cristal de hidrante</td><td class="n">406.00</td></tr></table></div>
+  </div>
+  <p class="nota e" style="--d:4">Los dos concentrados están firmados por al menos 3 miembros del Comité de Vigilancia.</p>
+</div></section>
+
+</main>
+
+<div class="girar vidrio" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M3 12a9 9 0 0 1 3-6.7M21 12a9 9 0 0 1-3 6.7"/></svg>Gira el teléfono para verla más grande</div>
+<footer class="pie">
+  <span class="lugar">ASAMBLEA GENERAL · 21 NOV 2026</span>
+  <div class="puntos" id="puntos"></div>
+  <nav class="mandos">
+    <button class="vidrio" id="prev" type="button" aria-label="Lámina anterior"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <button class="vidrio" id="next" type="button" aria-label="Lámina siguiente"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+  </nav>
+</footer>
+
+<script>
+(() => {
+  const raiz = document.documentElement;
+  const laminas = [...document.querySelectorAll(".lamina")];
+  const $ = (id) => document.getElementById(id);
+  const $actual = $("actual"), $total = $("total"), $seccion = $("seccion"), $puntos = $("puntos");
+  const $prev = $("prev"), $next = $("next");
+  const reducido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let i = 0;
+
+  /* Escala el lienzo de 1600×900 para que quepa completo entre cabecera y pie */
+  function escalar() {
+    const w = innerWidth, h = innerHeight;
+    const alto = h < 500 ? 76 : (w < 700 ? 110 : 140);
+    const k = Math.min(w / 1600, (h - alto) / 900);
+    raiz.style.setProperty("--k", Math.max(k, 0.1));
+  }
+  addEventListener("resize", escalar); escalar();
+
+  /* Tema: oscuro, claro o azul (?modo=, #N-claro / #N-azul, o el último elegido) */
+  const CLAVE = "oceana_informe_modo", TEMAS = ["oscuro", "claro", "azul"];
+  const FONDOS = { oscuro: "#0A0A0A", claro: "#F7F3EC", azul: "#070B24" };
+  const leer = () => { try { return localStorage.getItem(CLAVE); } catch (e) { return null; } };
+  const guardar = (m) => { try { localStorage.setItem(CLAVE, m); } catch (e) {} };
+  const botones = [...document.querySelectorAll("#temas button")];
+  let modo = "oscuro";
+  const qs = new URLSearchParams(location.search).get("modo");
+  const enHash = (location.hash.match(/claro|oscuro|azul/) || [])[0];
+  if (TEMAS.includes(qs)) modo = qs; else if (enHash) modo = enHash; else if (TEMAS.includes(leer())) modo = leer();
+  function ponerModo(m, recordar) {
+    modo = m;
+    if (m === "oscuro") raiz.removeAttribute("data-modo"); else raiz.setAttribute("data-modo", m);
+    document.querySelector('meta[name="theme-color"]').content = FONDOS[m];
+    botones.forEach((b) => { const on = b.dataset.t === m; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+    if (recordar) guardar(m);
+  }
+  ponerModo(modo, false);
+  botones.forEach((b) => b.onclick = () => { ponerModo(b.dataset.t, true); marcarHash(); });
+
+  /* Puntos clicables */
+  $total.textContent = String(laminas.length).padStart(2, "0");
+  $puntos.innerHTML = laminas.map((l, k) => {
+    const n = String(k + 1).padStart(2, "0");
+    return `<b role="button" tabindex="0" aria-label="Ir a la lámina ${k + 1}: ${l.dataset.seccion}" data-tip="${n} · ${l.dataset.seccion}"></b>`;
+  }).join("");
+  const puntos = [...$puntos.children];
+  puntos.forEach((p, k) => {
+    p.onclick = () => ir(k);
+    p.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); ir(k); } };
+  });
+
+  /* Cifras que cuentan al entrar */
+  function contar(l) {
+    if (reducido) return;
+    l.querySelectorAll("[data-cuenta]").forEach((b) => {
+      const fin = Number(b.dataset.cuenta), t0 = performance.now();
+      const paso = (t) => {
+        const p = Math.min(1, Math.max(0, (t - t0 - 350) / 1100));
+        b.textContent = Math.round(fin * (1 - Math.pow(1 - p, 3))).toLocaleString("en-US");
+        if (p < 1) requestAnimationFrame(paso);
+      };
+      requestAnimationFrame(paso);
+    });
+  }
+
+  function marcarHash() { try { history.replaceState(null, "", `#${i + 1}${modo === "oscuro" ? "" : "-" + modo}`); } catch (e) {} }
+
+  function ir(n, empujar = true) {
+    n = Math.max(0, Math.min(laminas.length - 1, n));
+    laminas[i].classList.remove("activa");
+    i = n;
+    const l = laminas[i];
+    l.classList.add("activa");
+    $actual.textContent = String(i + 1).padStart(2, "0");
+    $seccion.textContent = l.dataset.seccion || "";
+    puntos.forEach((p, k) => { p.classList.toggle("aqui", k === i); p.setAttribute("aria-current", k === i ? "step" : "false"); });
+    $prev.disabled = i === 0; $next.disabled = i === laminas.length - 1;
+    contar(l);
+    if (empujar) marcarHash();
+  }
+  window.irLamina = ir;
+
+  $prev.onclick = () => ir(i - 1);
+  $next.onclick = () => ir(i + 1);
+  document.addEventListener("keydown", (e) => {
+    if (e.target.closest && e.target.closest(".puntos")) return;
+    if (["ArrowRight", "PageDown", " "].includes(e.key)) { e.preventDefault(); ir(i + 1); }
+    if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); ir(i - 1); }
+    if (e.key === "Home") ir(0);
+    if (e.key === "End") ir(laminas.length - 1);
+    if (/^[1-9]$/.test(e.key) && Number(e.key) <= laminas.length) ir(Number(e.key) - 1);
+    if (e.key === "m" || e.key === "M") { ponerModo(TEMAS[(TEMAS.indexOf(modo) + 1) % 3], true); marcarHash(); }
+    if (e.key === "f" || e.key === "F") {
+      try { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen?.().catch(() => {}); } catch (err) {}
+    }
+  });
+
+  let x0 = null, y0 = null;
+  document.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) ir(i + (dx < 0 ? 1 : -1));
+    x0 = y0 = null;
+  }, { passive: true });
+
+  addEventListener("hashchange", () => {
+    const n = parseInt((location.hash.match(/\d+/) || ["0"])[0], 10);
+    const m = (location.hash.match(/claro|oscuro|azul/) || [])[0];
+    if (m && m !== modo) ponerModo(m, false);
+    if (n && n - 1 !== i) ir(n - 1, false);
+  });
+
+  ir((parseInt((location.hash.match(/\d+/) || ["1"])[0], 10) || 1) - 1, false);
+})();
+</script>
+</body>
+</html>
