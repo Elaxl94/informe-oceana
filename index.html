@@ -207,6 +207,67 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 .dona .centro b{display:block;font-size:50px;font-weight:800;letter-spacing:-.04em;color:var(--oro);line-height:1}
 .dona .centro small{display:block;font-size:14px;color:var(--tinta-2);margin-top:6px}
 
+/* ===== Versión de lectura fácil: letra grande, poco texto, una idea por lámina ===== */
+.lienzo{gap:30px;padding:24px 80px 40px}
+.pastilla{font-size:20px;padding:10px 20px 10px 16px;letter-spacing:.06em}
+.pastilla i{width:10px;height:10px}
+.titulo{font-size:64px;line-height:1.08}
+.sub{margin:0;font-size:30px;line-height:1.4;color:var(--tinta-2);max-width:1300px}
+.sub b{color:var(--tinta);font-weight:700}
+.portada h1{font-size:104px}
+.portada .bajada{font-size:30px;line-height:1.45;max-width:22ch}
+.grande{font-size:96px}
+.cifra-hero{display:flex;flex-direction:column;gap:14px;border-radius:30px;padding:44px 48px}
+.cifra-hero .grande{color:var(--oro);font-size:120px}
+.cifra-hero p{margin:0;font-size:30px;line-height:1.4;color:var(--tinta-2)}
+.cifra-hero p b{color:var(--tinta)}
+/* 6 problemas */
+.seis{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.prob{border-radius:26px;padding:30px 32px;display:flex;flex-direction:column;gap:14px}
+.prob .fila-t{gap:16px}
+.prob .num{width:48px;height:48px;border-radius:14px;font-size:24px}
+.prob h3{margin:0;font-size:32px;line-height:1.15;font-weight:700}
+.prob p{margin:0;font-size:24px;line-height:1.35;color:var(--tinta-2)}
+.prob .cifra{font-size:46px;color:var(--oro);margin-top:auto}
+/* barras grandes */
+.barras{display:flex;flex-direction:column;gap:34px}
+.barra-g .t{display:flex;justify-content:space-between;align-items:baseline;gap:20px;font-size:32px;font-weight:600;margin-bottom:14px}
+.barra-g .t b{font-size:52px;font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.barra-g .pista{height:34px;border-radius:99px;background:var(--linea);overflow:hidden}
+.barra-g .pista i{display:block;height:100%;width:calc(var(--w)*1%);border-radius:99px;background:var(--barra-gris);transform-origin:left}
+.barra-g.oro .pista i{background:linear-gradient(90deg,var(--oro-tenue),var(--oro))}
+.barra-g.oro .t b{color:var(--oro)}
+.lamina.activa .barra-g .pista i{animation:crece-x 1.1s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*150ms + 500ms)}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.caja{border-radius:30px;padding:40px 44px;display:flex;flex-direction:column;gap:30px}
+.caja h3{margin:0;font-size:34px;font-weight:700;line-height:1.2}
+/* lo que sigue */
+.sigue{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.paso{border-radius:26px;padding:30px 34px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px 24px}
+.paso .chip{font-size:18px;padding:7px 14px;grid-column:1/-1;justify-self:start}
+.paso{min-height:190px}
+.paso h3{margin:0;font-size:34px;font-weight:700;line-height:1.15}
+.paso p{margin:0;font-size:24px;color:var(--tinta-2);line-height:1.35;grid-column:1}
+.paso .cifra{font-size:46px;grid-row:2/4;grid-column:2;text-align:right}
+.paso .cifra small{display:block;font-size:20px;font-weight:600;color:var(--tinta-2);margin-top:6px}
+/* ochenta */
+.ochenta{display:grid;grid-template-columns:420px 1fr;gap:56px;align-items:center}
+.dona{width:380px;height:380px}
+.dona circle{stroke-width:18}
+.dona .centro b{font-size:80px}
+.dona .centro small{font-size:22px}
+.lista-g{display:flex;flex-direction:column;gap:22px}
+.lista-g .it{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:baseline;font-size:30px;padding-bottom:18px;border-bottom:1px solid var(--linea)}
+.lista-g .it b{font-weight:700;white-space:nowrap}
+.lista-g .it.tot{border-bottom:none;border-top:2px solid var(--oro-borde);padding-top:18px;font-weight:700}
+.lista-g .it.tot b{color:var(--oro);font-size:40px}
+/* controles más grandes para manos y vista cansada */
+.mandos button{width:58px;height:58px} .mandos svg{width:26px;height:26px}
+.folio{font-size:16px;padding:8px 16px}
+.cabecera .seccion{font-size:14px}
+.marca{font-size:16px}
+.pie .lugar{display:none}
+
 /* Animación de entrada */
 @keyframes entra{from{opacity:0;transform:translateY(16px)}}
 @keyframes crece-y{from{transform:scaleY(0)}}
@@ -243,7 +304,7 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 <div class="grano" aria-hidden="true"></div>
 
 <header class="cabecera">
-  <div class="marca"><i></i>TORRE OCEANA <span>· ASAMBLEA 2026</span></div>
+  <div class="marca"><i></i>TORRE OCEANA <span>· INFORME 2026</span></div>
   <div class="seccion" id="seccion"></div>
   <div class="folio vidrio"><b id="actual">01</b><i>/</i><span id="total">09</span></div>
   <div class="temas vidrio" id="temas" role="group" aria-label="Color de la presentación">
@@ -256,216 +317,84 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 <main id="laminas">
 
 <!-- 1 · PORTADA -->
-<section class="lamina" data-seccion="Informe de mantenimiento"><div class="lienzo">
+<section class="lamina" data-seccion="Inicio"><div class="lienzo">
   <div class="portada">
     <div>
-      <span class="pastilla e"><i></i>Informe de mantenimiento · enero a noviembre 2026</span>
-      <h1 class="e" style="--d:1">Qué encontramos,<br>qué se hizo<br>y <em>por qué</em>.</h1>
-      <p class="bajada e" style="--d:2">Mantenimiento extraordinario de Torre Oceana: pagos según estados de cuenta, sin servicios recurrentes, insumos ni caja chica.</p>
+      <span class="pastilla e"><i></i>Asamblea · 21 de noviembre 2026</span>
+      <h1 class="e" style="--d:1">¿En qué se usó<br>el dinero de<br><em>mantenimiento</em>?</h1>
+      <p class="bajada e" style="--d:2">Reparaciones de Torre Oceana, de enero a noviembre de 2026.</p>
     </div>
-    <div class="stats">
-      <div class="stat vidrio e" style="--d:2"><span class="grande" data-cuenta="6">6</span><p><b>pendientes urgentes</b> al recibir la torre en julio</p></div>
-      <div class="stat vidrio e" style="--d:3"><span class="grande">$<span data-cuenta="443575">443,575</span></span><p>en mantenimiento extraordinario de enero a noviembre: <b>$192,203</b> ene–jun y <b>$251,372</b> jul–nov</p></div>
-      <div class="stat vidrio e" style="--d:4"><span class="grande"><span data-cuenta="80">80</span> %</span><p>de lo de julio a noviembre fue <b>rezago o fallas</b> que no podían esperar</p></div>
+    <div class="cifra-hero vidrio e" style="--d:3">
+      <span class="grande">$<span data-cuenta="443575">443,575</span></span>
+      <p>en <b>reparaciones</b> de enero a noviembre.</p>
+      <p style="font-size:24px">No incluye pagos fijos de cada mes: luz, agua, elevadores, limpieza, vigilancia ni jardinería.</p>
     </div>
   </div>
 </div></section>
 
-<!-- 2 · ENERO A JUNIO -->
-<section class="lamina" data-seccion="Enero a junio"><div class="lienzo">
-  <span class="pastilla e"><i></i>01 · Antes de julio</span>
-  <div class="top e" style="--d:1"><h2 class="titulo">Enero a junio, <em>con la administración anterior</em>.</h2><span class="monto vidrio">$192,202.55</span></div>
-  <div class="g3" style="grid-template-columns:0.9fr 1.15fr 1.15fr;flex:1">
-    <div class="tarjeta vidrio e" style="--d:2">
-      <div class="cabeza"><h3>Por mes</h3><span class="etiqueta">miles de pesos</span></div>
-      <div class="meses">
-        <div class="mes"><span class="v">4.7</span><span class="b" style="--h:7.5;--i:0"></span><span class="m">ENE</span></div>
-        <div class="mes"><span class="v">38.9</span><span class="b" style="--h:61.9;--i:1"></span><span class="m">FEB</span></div>
-        <div class="mes"><span class="v">30.2</span><span class="b" style="--h:48.1;--i:2"></span><span class="m">MAR</span></div>
-        <div class="mes"><span class="v">25.3</span><span class="b" style="--h:40.2;--i:3"></span><span class="m">ABR</span></div>
-        <div class="mes"><span class="v">30.1</span><span class="b" style="--h:47.9;--i:4"></span><span class="m">MAY</span></div>
-        <div class="mes"><span class="v">62.9</span><span class="b" style="--h:100;--i:5"></span><span class="m">JUN</span></div>
-      </div>
-      <table class="tabla"><tr class="tot"><td>Total</td><td class="n">192,202.55</td></tr></table>
-    </div>
-    <div class="tarjeta vidrio e" style="--d:3">
-      <div class="cabeza"><h3>En qué se gastó</h3></div>
-      <div class="lista">
-      <div class="rubro"><span class="t">Iluminación y luminarias de alberca</span><span class="n">55,731.40</span><span class="pista"><i style="--w:100;--i:0"></i></span></div>
-      <div class="rubro"><span class="t">Gas: medidores y regulador</span><span class="n">49,151.75</span><span class="pista"><i style="--w:88.2;--i:1"></i></span></div>
-      <div class="rubro"><span class="t">Rejillas, minipostes y albañilería</span><span class="n">37,719.83</span><span class="pista"><i style="--w:67.7;--i:2"></i></span></div>
-      <div class="rubro"><span class="t">Bombeo, cárcamo y PTAR</span><span class="n">16,269.00</span><span class="pista"><i style="--w:29.2;--i:3"></i></span></div>
-      <div class="rubro"><span class="t">Corte de ceiba</span><span class="n">10,500.00</span><span class="pista"><i style="--w:18.8;--i:4"></i></span></div>
-      <div class="rubro"><span class="t">Accesos, hidráulica, PCI, planta y otros</span><span class="n">22,830.57</span><span class="pista"><i style="--w:41;--i:5"></i></span></div>
-      </div>
-    </div>
-    <div class="tarjeta vidrio e" style="--d:4;border-color:var(--oro-borde)">
-      <div class="cabeza"><h3>Los equipos que fallaron</h3></div>
-      <div class="leyenda"><span><i></i>Ene–jun</span><span><i class="o"></i>Jul–nov</span></div>
-      <div class="compara">
-        <div class="par"><div class="t"><span>Bombeo</span></div>
-          <div class="fila antes"><span>Ene–jun</span><span class="barra"><i style="--w:20.2;--i:0"></i></span><span class="n">16,269.00</span></div>
-          <div class="fila ahora"><span>Jul–nov</span><span class="barra"><i style="--w:100;--i:0"></i></span><span class="n">80,660.12</span></div></div>
-        <div class="par"><div class="t"><span>Planta de emergencia</span></div>
-          <div class="fila antes"><span>Ene–jun</span><span class="barra"><i style="--w:0.7;--i:1"></i></span><span class="n">574.00</span></div>
-          <div class="fila ahora"><span>Jul–nov</span><span class="barra"><i style="--w:48.1;--i:1"></i></span><span class="n">38,829.34</span></div></div>
-        <div class="par"><div class="t"><span>Contra incendio</span></div>
-          <div class="fila antes"><span>Ene–jun</span><span class="barra"><i style="--w:9.2;--i:2"></i></span><span class="n">7,400.00</span></div>
-          <div class="fila ahora"><span>Jul–nov</span><span class="barra"><i style="--w:55.6;--i:2"></i></span><span class="n">44,886.20</span></div></div>
-        <div class="par"><div class="t"><span>Cámaras</span></div>
-          <div class="fila antes"><span>Ene–jun</span><span class="barra"><i style="--w:0;--i:3"></i></span><span class="n">0.00</span></div>
-          <div class="fila ahora"><span>Jul–nov</span><span class="barra"><i style="--w:45.3;--i:3"></i></span><span class="n">36,526.99</span></div></div>
-      </div>
-      <table class="tabla"><tr class="tot"><td>Total</td><td class="n" style="color:var(--tinta-2)">24,243.00</td><td class="n">200,902.65</td></tr></table>
-    </div>
-  </div>
-  <p class="nota e" style="--d:5">Pagos según estados de cuenta de enero a junio. El material de albañilería se pagó dos veces (30-abr y 7-may) y se reembolsó el 5-jun: se cuenta una vez. El 27-abr se pagaron dos «otras reparaciones imprevistas»: $10,469 a BMR (incluido en bombeo) y $3,050 a Carlos Joel; el estado de cuenta no dice qué se reparó.</p>
-</div></section>
-
-<!-- 3 · PENDIENTES -->
-<section class="lamina" data-seccion="Cómo recibimos la torre"><div class="lienzo">
-  <span class="pastilla e"><i></i>02 · Cómo recibimos la torre</span>
-  <div class="top e" style="--d:1"><h2 class="titulo">Seis pendientes urgentes, <em>y lo que costaron</em>.</h2></div>
-  <div class="pend">
-    <div class="tarjeta vidrio e" style="--d:2"><div class="fila-t"><span class="num">1</span><h3>Planta de emergencia</h3></div><p>Sin mantenimiento, baterías vencidas, tanque perforado.</p><span class="cifra oro">$38,829.34</span><div class="estado">Baterías (ago) y 00089 pagadas · Generac espera CSF y opinión del SAT</div></div>
-    <div class="tarjeta vidrio e" style="--d:3"><div class="fila-t"><span class="num">2</span><h3>Hidroneumático</h3></div><p>2 de 3 bombas y el tanque dañados, sin mantenimiento.</p><span class="cifra oro">$68,361.12</span><div class="estado">00073, 00090, 00091 · bomba 3 en curso</div></div>
-    <div class="tarjeta vidrio e" style="--d:4"><div class="fila-t"><span class="num">3</span><h3>Extintores y red PCI</h3></div><p>Extintores caducados y sin preventivo anual.</p><span class="cifra oro">$44,886.20</span><div class="estado">00063, 00074, 00081, 00085 · al día</div></div>
-    <div class="tarjeta vidrio e" style="--d:5"><div class="fila-t"><span class="num">4</span><h3>Cámaras de vigilancia</h3></div><p>Sin acceso y grabando en una PC de oficina.</p><span class="cifra oro">$36,526.99</span><div class="estado">00082 · Cyberpuerta y Amazon pagados, faltan piezas</div></div>
-    <div class="tarjeta vidrio e" style="--d:6"><div class="fila-t"><span class="num">5</span><h3>Cárcamo y PTAR</h3></div><p>Sucio, una bomba con dificultad y la bomba de lodos dañada.</p><span class="cifra oro">$12,299.00</span><div class="estado">00031, 00034, 00037 · operando</div></div>
-    <div class="tarjeta vidrio e" style="--d:7"><div class="fila-t"><span class="num">6</span><h3>Filtrado de alberca</h3></div><p>Bomba con el casco roto desde hacía más de 6 meses.</p><span class="cifra oro">$6,584.16</span><div class="estado">00080 · bomba reemplazada</div></div>
+<!-- 2 · CÓMO ENCONTRAMOS LA TORRE -->
+<section class="lamina" data-seccion="Cómo encontramos la torre"><div class="lienzo">
+  <span class="pastilla e"><i></i>Julio 2026</span>
+  <h2 class="titulo e" style="--d:1">Encontramos <em>6 problemas urgentes</em>.</h2>
+  <div class="seis">
+    <div class="prob vidrio e" style="--d:2"><div class="fila-t"><span class="num">1</span><h3>Bombas del agua</h3></div><p>2 de 3 bombas dañadas.</p><span class="cifra">$68,361</span></div>
+    <div class="prob vidrio e" style="--d:3"><div class="fila-t"><span class="num">2</span><h3>Contra incendio</h3></div><p>Extintores vencidos.</p><span class="cifra">$44,886</span></div>
+    <div class="prob vidrio e" style="--d:4"><div class="fila-t"><span class="num">3</span><h3>Planta de luz</h3></div><p>Sin mantenimiento y baterías vencidas.</p><span class="cifra">$38,829</span></div>
+    <div class="prob vidrio e" style="--d:5"><div class="fila-t"><span class="num">4</span><h3>Cámaras</h3></div><p>Grababan en una computadora de oficina.</p><span class="cifra">$36,527</span></div>
+    <div class="prob vidrio e" style="--d:6"><div class="fila-t"><span class="num">5</span><h3>Drenaje</h3></div><p>Bomba del cárcamo dañada.</p><span class="cifra">$12,299</span></div>
+    <div class="prob vidrio e" style="--d:7"><div class="fila-t"><span class="num">6</span><h3>Alberca</h3></div><p>Bomba rota por más de 6 meses.</p><span class="cifra">$6,584</span></div>
   </div>
 </div></section>
 
-<!-- 4 · JULIO A SEPTIEMBRE -->
-<section class="lamina" data-seccion="Julio a septiembre"><div class="lienzo">
-  <span class="pastilla e"><i></i>03 · Julio a septiembre</span>
-  <div class="top e" style="--d:1"><h2 class="titulo">Julio a septiembre: <em>las primeras reparaciones</em>.</h2><span class="monto vidrio">$41,422.23</span></div>
-  <div class="tarjeta vidrio e" style="--d:2;flex:1;justify-content:center">
-    <table class="tabla" style="font-size:18.5px">
-      <tr><th style="width:150px">Póliza</th><th>Concepto</th><th style="width:160px">Pago</th><th class="n">Monto</th></tr>
-      <tr class="grupo"><td colspan="3">Julio</td><td class="n">$12,461.08</td></tr>
-      <tr><td class="f">00005</td><td>Herramienta de mantenimiento <span class="d">· Mercado Libre</span></td><td class="d">22-jul</td><td class="n">8,691.08</td></tr>
-      <tr><td class="f">00017</td><td>Bomba de riego Hyundai 2 HP <span class="d">· Mercado Libre</span></td><td class="d">28-ago</td><td class="n">3,770.00</td></tr>
-      <tr class="grupo"><td colspan="3">Agosto</td><td class="n">$23,604.98</td></tr>
-      <tr><td class="f">s/póliza</td><td>Baterías de la planta de emergencia <span class="d">· Acumuladores Peninsulares</span></td><td class="d">20-ago</td><td class="n">12,704.98</td></tr>
-      <tr><td class="f">00034</td><td>Bomba sumergible BARNES para el cárcamo <span class="d">· Mercado Pago</span></td><td class="d">28-ago</td><td class="n">8,000.00</td></tr>
-      <tr><td class="f">00031</td><td>Reparación de la bomba del cárcamo <span class="d">· Lavit</span></td><td class="d">1-sep</td><td class="n">2,900.00</td></tr>
-      <tr class="grupo"><td colspan="3">Septiembre</td><td class="n">$5,356.17</td></tr>
-      <tr><td class="f">00045</td><td>Bomba de aspirado de alberca</td><td class="d">15-sep</td><td class="n">2,666.34</td></tr>
-      <tr><td class="f">00037</td><td>Kit de bomba sumergible</td><td class="d">15-sep</td><td class="n">1,399.00</td></tr>
-      <tr><td class="f">00050–51</td><td>Manguera y tubería de aspirado</td><td class="d">21-sep</td><td class="n">1,290.83</td></tr>
-    </table>
-  </div>
-  <p class="nota e" style="--d:3">Montos pagados según estado de cuenta. Solo mantenimiento extraordinario.</p>
-</div></section>
-
-<!-- 5 · OCTUBRE Y NOVIEMBRE -->
-<section class="lamina" data-seccion="Octubre y noviembre"><div class="lienzo">
-  <span class="pastilla e"><i></i>04 · Octubre y noviembre</span>
-  <div class="top e" style="--d:1"><h2 class="titulo">Octubre y noviembre: <em>los equipos</em>.</h2><span class="monto vidrio">$209,950.04</span></div>
-  <div class="g2">
-    <div class="tarjeta vidrio e" style="--d:2"><div class="cabeza"><h3>Bombeo y agua</h3><span class="suma">$68,361.12</span></div>
-      <table class="tabla amplia"><tr><td class="f">00090</td><td>3 impulsores para bomba Picsa</td><td class="n">25,056.00</td></tr>
-      <tr><td class="f">00073</td><td>Bomba Siemens y tanque presurizado</td><td class="n">23,121.12</td></tr>
-      <tr><td class="f">00091</td><td>Embobinado de motor Siemens 15 HP</td><td class="n">20,184.00</td></tr></table></div>
-    <div class="tarjeta vidrio e" style="--d:3"><div class="cabeza"><h3>Planta de emergencia y cámaras</h3><span class="suma">$62,651.35</span></div>
-      <table class="tabla amplia"><tr><td class="f">00082</td><td>Servidor de grabación (Cyberpuerta)</td><td class="n">32,074.00</td></tr>
-      <tr><td class="f">00082</td><td>Acelerador Hailo-8 (Amazon)</td><td class="n">4,452.99</td></tr>
-      <tr><td class="f">00089</td><td>Mantenimiento mayor de la planta (Generac)</td><td class="n">26,124.36</td></tr></table></div>
-    <div class="tarjeta vidrio e" style="--d:4"><div class="cabeza"><h3>Contra incendio</h3><span class="suma">$44,886.20</span></div>
-      <table class="tabla amplia"><tr><td class="f">00081</td><td>Mantenimiento anual de la red PCI</td><td class="n">25,984.00</td></tr>
-      <tr><td class="f">00063</td><td>Recarga de 70 extintores</td><td class="n">17,684.20</td></tr>
-      <tr><td class="f">00074, 85</td><td>Cristales de gabinetes de hidrante</td><td class="n">1,218.00</td></tr></table></div>
-    <div class="tarjeta vidrio e" style="--d:5"><div class="cabeza"><h3>Áreas comunes y alberca</h3><span class="suma">$34,051.37</span></div>
-      <table class="tabla amplia"><tr><td class="f">00079, 62, 83</td><td>Pintura interior y pulido de mármol</td><td class="n">17,199.72</td></tr>
-      <tr><td class="f">00088, 77, 80</td><td>Vidrios*, lámparas LED y motobomba</td><td class="n">16,851.65</td></tr></table></div>
-  </div>
-  <p class="nota e" style="--d:6">00082, 00089 y el saldo de la 00081 se pagaron del 5 al 11 de noviembre. <b>*Vidrios (00088):</b> se cuenta al 100 %; falta pagar el 50 %.</p>
-</div></section>
-
-<!-- 6 · REZAGO -->
+<!-- 3 · 8 DE CADA 10 -->
 <section class="lamina" data-seccion="Por qué se gastó"><div class="lienzo">
-  <span class="pastilla e"><i></i>05 · Por qué se gastó</span>
-  <div class="top e" style="--d:1"><h2 class="titulo">8 de cada 10 pesos, <em>rezago o fallas</em>.</h2><span class="monto vidrio">$200,902.65</span></div>
-  <div class="rez">
-    <div class="tarjeta vidrio e" style="--d:2;align-items:center;justify-content:center;text-align:center">
-      <div class="dona"><svg viewBox="0 0 120 120"><circle class="fondo" cx="60" cy="60" r="48"/><circle class="arco" cx="60" cy="60" r="48" pathLength="100"/></svg>
-        <div class="centro"><div><b><span data-cuenta="80">80</span>%</b><small>de $251,372.27</small></div></div></div>
-      <p style="max-width:24ch">Del mantenimiento extraordinario de julio a noviembre fue rezago documentado o una falla urgente.</p>
-    </div>
-    <div class="tarjeta vidrio e" style="--d:3">
-      <span class="chip oro"><i></i>Rezago documentado</span>
-      <div class="cabeza"><h3>Desgaste y falta de mantenimiento</h3></div>
-      <span class="cifra oro">$188,603.65</span>
-      <table class="tabla amplia"><tr><td class="f">00073, 90, 91</td><td>Bombas del hidroneumático</td><td class="n">68,361.12</td></tr>
-      <tr><td class="f">00089 + bat.</td><td>Planta: mantenimiento y baterías</td><td class="n">38,829.34</td></tr>
-      <tr><td class="f">00082</td><td>Equipo de grabación de cámaras</td><td class="n">36,526.99</td></tr>
-      <tr><td class="f">00081</td><td>Mantenimiento anual de la red PCI</td><td class="n">25,984.00</td></tr>
-      <tr><td class="f">00063, 74, 85</td><td>Extintores caducados y cristales</td><td class="n">18,902.20</td></tr></table>
-    </div>
-    <div class="tarjeta vidrio e" style="--d:4">
-      <span class="chip"><i></i>Falla urgente</span>
-      <div class="cabeza"><h3>No podía esperar</h3></div>
-      <span class="cifra">$12,299.00</span>
-      <table class="tabla amplia"><tr><td class="f">00034</td><td>Bomba nueva del cárcamo</td><td class="n">8,000.00</td></tr>
-      <tr><td class="f">00031</td><td>Reparación de la bomba</td><td class="n">2,900.00</td></tr>
-      <tr><td class="f">00037</td><td>Kit de instalación</td><td class="n">1,399.00</td></tr></table>
-      <p style="margin-top:auto">Falla del cárcamo del 15 de agosto.</p>
+  <span class="pastilla e"><i></i>Julio a noviembre 2026</span>
+  <h2 class="titulo e" style="--d:1">8 de cada 10 pesos <em>fueron para lo urgente</em>.</h2>
+  <div class="ochenta">
+    <div class="e" style="--d:2"><div class="dona"><svg viewBox="0 0 120 120"><circle class="fondo" cx="60" cy="60" r="48"/><circle class="arco" cx="60" cy="60" r="48" pathLength="100"/></svg>
+      <div class="centro"><div><b><span data-cuenta="80">80</span>%</b><small>equipos dañados</small></div></div></div></div>
+    <div class="lista-g e" style="--d:3">
+      <div class="it"><span>Equipos descuidados por falta de mantenimiento</span><b>$188,604</b></div>
+      <div class="it"><span>Descompostura del drenaje (agosto)</span><b>$12,299</b></div>
+      <div class="it tot"><span>Equipos dañados</span><b>$200,903</b></div>
+      <p class="sub" style="font-size:26px">De un total de <b>$251,372</b> en reparaciones de julio a noviembre.</p>
     </div>
   </div>
-  <p class="nota e" style="--d:5">De enero a junio, estos mismos equipos recibieron <b>$24,243</b>.</p>
 </div></section>
 
-<!-- 7 · LO QUE SIGUE -->
+<!-- 4 · ANTES Y AHORA -->
+<section class="lamina" data-seccion="Antes y ahora"><div class="lienzo">
+  <span class="pastilla e"><i></i>Enero a junio · Julio a noviembre</span>
+  <h2 class="titulo e" style="--d:1">Antes y ahora, <em>en los equipos que fallaron</em>.</h2>
+  <p class="sub e" style="--d:2">Bombas del agua y drenaje, planta de luz, contra incendio y cámaras.</p>
+  <div class="dos">
+    <div class="caja vidrio e" style="--d:3">
+      <h3>Gasto en esos equipos</h3>
+      <div class="barras">
+        <div class="barra-g"><div class="t"><span>Enero a junio</span><b>$24,243</b></div><div class="pista"><i style="--w:12.1;--i:0"></i></div></div>
+        <div class="barra-g oro"><div class="t"><span>Julio a noviembre</span><b>$200,903</b></div><div class="pista"><i style="--w:100;--i:1"></i></div></div>
+      </div>
+    </div>
+    <div class="caja vidrio e" style="--d:4">
+      <h3>Todas las reparaciones</h3>
+      <div class="barras">
+        <div class="barra-g"><div class="t"><span>Enero a junio</span><b>$192,203</b></div><div class="pista"><i style="--w:76.5;--i:2"></i></div></div>
+        <div class="barra-g oro"><div class="t"><span>Julio a noviembre</span><b>$251,372</b></div><div class="pista"><i style="--w:100;--i:3"></i></div></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 5 · LO QUE SIGUE -->
 <section class="lamina" data-seccion="Lo que sigue"><div class="lienzo">
-  <span class="pastilla e"><i></i>06 · Plan preventivo 2026-2027</span>
-  <div class="top e" style="--d:1"><h2 class="titulo">En proceso <em>y por aprobar</em>.</h2><span class="monto vidrio">$88,135<small>por aprobar</small></span></div>
-  <div class="pend">
-    <div class="tarjeta vidrio e" style="--d:2"><span class="chip ok"><i></i>Autorizado y pagado</span><h3>Planta de emergencia</h3><p>Generac no da el servicio sin la constancia fiscal y la opinión de cumplimiento del SAT. Plan de contingencia entregado al Comité y a la A.C.</p><span class="cifra" style="margin-top:auto">$38,829.34 <small style="font-size:16px;color:var(--tinta-2);font-weight:600">pagado</small></span></div>
-    <div class="tarjeta vidrio e" style="--d:3"><span class="chip ok"><i></i>Pagado</span><h3>Grabación de cámaras</h3><p>Equipo comprado (Cyberpuerta y Amazon); faltan piezas por llegar para armarlo.</p><span class="cifra" style="margin-top:auto">$36,526.99 <small style="font-size:16px;color:var(--tinta-2);font-weight:600">pagado</small></span></div>
-    <div class="tarjeta vidrio e" style="--d:4"><span class="chip oro"><i></i>En curso</span><h3>Bomba 3 del hidroneumático</h3><p>La bomba de emergencia está en instalación.</p><span class="cifra oro" style="margin-top:auto">$26,082 <small style="font-size:16px;color:var(--tinta-2);font-weight:600">cotizado</small></span></div>
-    <div class="tarjeta vidrio e" style="--d:5;border-color:var(--oro-borde)"><span class="chip oro"><i></i>Por aprobar</span><h3>Piezas preventivas KONE</h3><p>Para no esperar semanas de abasto si falla un elevador.</p><span class="cifra oro" style="margin-top:auto">$88,135</span></div>
-    <div class="tarjeta vidrio e" style="--d:6"><span class="chip"><i></i>Por cotizar</span><h3>Válvulas de aire en azotea</h3><p>Las 3 tienen fuga; protegen bombas y tubería.</p><span class="cifra" style="margin-top:auto;font-size:24px;color:var(--tinta-2)">Sin cotización aún</span></div>
-    <div class="tarjeta vidrio e" style="--d:7"><span class="chip"><i></i>Por cotizar</span><h3>Cisternas y fachada</h3><p>Lavado de cisternas; humedad en fachada y en 14 departamentos.</p><span class="cifra" style="margin-top:auto;font-size:24px;color:var(--tinta-2)">Sin cotización aún</span></div>
+  <span class="pastilla e"><i></i>Próximos meses</span>
+  <h2 class="titulo e" style="--d:1">Lo que <em>sigue</em>.</h2>
+  <div class="sigue">
+    <div class="paso vidrio e" style="--d:2"><span class="chip oro"><i></i>En instalación</span><h3>Tercera bomba del agua</h3><p>Para tener una de respaldo.</p><span class="cifra oro">$26,082<small>cotizado</small></span></div>
+    <div class="paso vidrio e" style="--d:3;border-color:var(--oro-borde)"><span class="chip oro"><i></i>Se pide su aprobación</span><h3>Piezas de los elevadores</h3><p>Para no esperar semanas si uno falla.</p><span class="cifra oro">$88,135<small>por aprobar</small></span></div>
+    <div class="paso vidrio e" style="--d:4"><span class="chip"><i></i>Por cotizar</span><h3>Válvulas de la azotea</h3><p>Las 3 tienen fuga.</p><span class="cifra" style="font-size:30px;color:var(--tinta-2)">Sin precio<small>aún</small></span></div>
+    <div class="paso vidrio e" style="--d:5"><span class="chip"><i></i>Por cotizar</span><h3>Cisternas y humedad</h3><p>Lavado de cisternas y fachada.</p><span class="cifra" style="font-size:30px;color:var(--tinta-2)">Sin precio<small>aún</small></span></div>
   </div>
-</div></section>
-
-<!-- 8 · NOTARIALES -->
-<section class="lamina" data-seccion="Gastos notariales"><div class="lienzo">
-  <span class="pastilla e"><i></i>07 · Gastos notariales</span>
-  <div class="top e" style="--d:1"><h2 class="titulo">Actas y trámites <em>que estaban atrasados</em>.</h2><span class="monto vidrio">$48,092.00<small>pagado</small></span></div>
-  <div class="tarjeta vidrio e" style="--d:2;flex:1;justify-content:center">
-    <table class="tabla" style="font-size:17px">
-      <tr><th>Póliza</th><th>Concepto</th><th>Notaría</th><th>Pago</th><th class="n">Importe</th></tr>
-      <tr><td class="f">00055</td><td>Protocolización del acta de asamblea de noviembre 2025</td><td class="d">Lic. Carlos F. Pavón Durán</td><td class="d">24-sep</td><td class="n">12,592.00</td></tr>
-      <tr><td class="f">00046</td><td>Protocolización del acta de asamblea del 28-jun-2026</td><td class="d">Lic. Carlos F. Pavón Durán</td><td class="d">24-sep</td><td class="n">15,000.00</td></tr>
-      <tr><td class="f">00072</td><td>Segundo testimonio notarial de Torre Oceana</td><td class="d">Lic. Antonio R. Pasos Canto</td><td class="d">7-oct</td><td class="n">2,000.00</td></tr>
-      <tr><td class="f">00056</td><td>Fe de hechos del inventario y de la oficina</td><td class="d">Lic. Carlos F. Pavón Durán</td><td class="d">17-nov</td><td class="n">10,000.00</td></tr>
-      <tr><td class="f">00057</td><td>Notificación notarial de remoción</td><td class="d">Lic. Carlos F. Pavón Durán</td><td class="d">17-nov</td><td class="n">8,500.00</td></tr>
-      <tr class="tot"><td></td><td colspan="3">Total 2026</td><td class="n">$48,092.00</td></tr>
-    </table>
-  </div>
-  <p class="nota e" style="--d:3">El acta de noviembre de 2025 llevaba casi un año sin protocolizar.</p>
-</div></section>
-
-<!-- 9 · AUTORIZACIONES -->
-<section class="lamina" data-seccion="Autorizaciones del Comité"><div class="lienzo">
-  <span class="pastilla e"><i></i>08 · Autorizaciones del Comité</span>
-  <div class="top e" style="--d:1"><h2 class="titulo">Nueve mantenimientos, <em>firmados en dos sesiones</em>.</h2><span class="monto vidrio">$127,539.68</span></div>
-  <div class="g2">
-    <div class="tarjeta vidrio e" style="--d:2"><div class="cabeza"><h3>2 de octubre · 4 cargos</h3><span class="suma">$48,229.32</span></div>
-      <table class="tabla amplia"><tr><td class="f">00073</td><td>Bomba Siemens y tanque presurizado</td><td class="n">23,121.12</td></tr>
-      <tr><td class="f">00063</td><td>Recarga de 70 extintores</td><td class="n">17,684.20</td></tr>
-      <tr><td class="f">00062</td><td>Pulido de 100 m² de mármol</td><td class="n">6,612.00</td></tr>
-      <tr><td class="f">00074</td><td>Cristales de gabinete de hidrante</td><td class="n">812.00</td></tr></table></div>
-    <div class="tarjeta vidrio e" style="--d:3"><div class="cabeza"><h3>27 de octubre · 5 cargos</h3><span class="suma">$79,310.36</span></div>
-      <table class="tabla amplia"><tr><td class="f">00089</td><td>Mantenimiento mayor de la planta</td><td class="n">26,124.36</td></tr>
-      <tr><td class="f">00090</td><td>3 impulsores para bomba Picsa</td><td class="n">25,056.00</td></tr>
-      <tr><td class="f">00091</td><td>Embobinado de motor 15 HP</td><td class="n">20,184.00</td></tr>
-      <tr><td class="f">00088</td><td>Cambio de vidrios (2 juegos)</td><td class="n">7,540.00</td></tr>
-      <tr><td class="f">00085</td><td>Tercer cristal de hidrante</td><td class="n">406.00</td></tr></table></div>
-  </div>
-  <p class="nota e" style="--d:4">Los dos concentrados están firmados por al menos 3 miembros del Comité de Vigilancia.</p>
 </div></section>
 
 </main>
