@@ -268,6 +268,35 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 .marca{font-size:16px}
 .pie .lugar{display:none}
 
+
+/* Botón y panel de detalle */
+.ver-det{position:absolute;left:var(--pad-x);bottom:14px;pointer-events:auto;display:flex;align-items:center;gap:10px;height:58px;padding:0 24px;border-radius:99px;
+  color:var(--tinta);font:700 20px/1 var(--letra);cursor:pointer;border:1px solid var(--oro-borde)}
+.ver-det svg{width:22px;height:22px;fill:none;stroke:var(--oro);stroke-width:2.2;stroke-linecap:round}
+.ok-c{color:var(--ok)!important;font-size:40px!important}
+.detalle{position:fixed;inset:0;z-index:40;display:grid;place-items:center;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:2.5vh 2.5vw}
+:root[data-modo="claro"] .detalle{background:rgba(40,30,10,.35)}
+.detalle[hidden]{display:none}
+.det-caja{width:min(1500px,100%);height:100%;border-radius:28px;display:flex;flex-direction:column;overflow:hidden;background:var(--fondo)}
+.det-top{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;padding:22px 28px;border-bottom:1px solid var(--linea)}
+.det-top h2{margin:0;font-size:clamp(24px,2.4vw,34px);font-weight:800}
+.det-tabs{display:flex;flex-wrap:wrap;gap:8px;flex:1}
+.det-tabs button,.det-cerrar{font:700 clamp(16px,1.5vw,21px)/1 var(--letra);padding:13px 18px;border-radius:99px;cursor:pointer;border:1px solid var(--vidrio-borde);background:transparent;color:var(--tinta-2)}
+.det-tabs button[aria-selected="true"]{background:var(--oro);color:var(--sobre-oro);border-color:var(--oro)}
+.det-cerrar{color:var(--tinta);border-color:var(--oro-borde)}
+.det-cuerpo{overflow:auto;padding:10px 28px 34px;-webkit-overflow-scrolling:touch}
+.det-cuerpo section{display:none}.det-cuerpo section.on{display:block}
+.det-nota{font-size:clamp(16px,1.5vw,21px);line-height:1.45;color:var(--tinta-2);margin:16px 0}
+.dt{width:100%;border-collapse:collapse;font-size:clamp(17px,1.65vw,24px)}
+.dt th{text-align:left;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-3);padding:10px 10px;position:sticky;top:0;background:var(--fondo)}
+.dt td{padding:13px 10px;border-bottom:1px solid var(--linea);vertical-align:baseline}
+.dt .n{text-align:right;white-space:nowrap;font-weight:600}
+.dt .f{color:var(--oro);font-weight:700;white-space:nowrap}
+.dt .g td{font-weight:800;padding-top:24px;border-bottom:2px solid var(--oro-borde)}
+.dt .g .n{color:var(--oro)}
+.dt .t td{font-weight:800;border-bottom:none;border-top:2px solid var(--oro-borde);font-size:1.1em}
+.dt .t .n{color:var(--oro)}
+@media (max-width:700px){.ver-det{height:46px;padding:0 16px;font-size:16px}.dt td:nth-child(3),.dt th:nth-child(3){display:none}}
 /* Animación de entrada */
 @keyframes entra{from{opacity:0;transform:translateY(16px)}}
 @keyframes crece-y{from{transform:scaleY(0)}}
@@ -317,7 +346,7 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 <main id="laminas">
 
 <!-- 1 · PORTADA -->
-<section class="lamina" data-seccion="Inicio"><div class="lienzo">
+<section class="lamina" data-seccion="Inicio" data-det="polizas"><div class="lienzo">
   <div class="portada">
     <div>
       <span class="pastilla e"><i></i>Asamblea · 21 de noviembre 2026</span>
@@ -333,7 +362,7 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 </div></section>
 
 <!-- 2 · CÓMO ENCONTRAMOS LA TORRE -->
-<section class="lamina" data-seccion="Cómo encontramos la torre"><div class="lienzo">
+<section class="lamina" data-seccion="Cómo encontramos la torre" data-det="polizas"><div class="lienzo">
   <span class="pastilla e"><i></i>Julio 2026</span>
   <h2 class="titulo e" style="--d:1">Encontramos <em>6 problemas urgentes</em>.</h2>
   <div class="seis">
@@ -347,7 +376,7 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 </div></section>
 
 <!-- 3 · 8 DE CADA 10 -->
-<section class="lamina" data-seccion="Por qué se gastó"><div class="lienzo">
+<section class="lamina" data-seccion="Por qué se gastó" data-det="polizas"><div class="lienzo">
   <span class="pastilla e"><i></i>Julio a noviembre 2026</span>
   <h2 class="titulo e" style="--d:1">8 de cada 10 pesos <em>fueron para lo urgente</em>.</h2>
   <div class="ochenta">
@@ -363,7 +392,7 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 </div></section>
 
 <!-- 4 · ANTES Y AHORA -->
-<section class="lamina" data-seccion="Antes y ahora"><div class="lienzo">
+<section class="lamina" data-seccion="Antes y ahora" data-det="enejun"><div class="lienzo">
   <span class="pastilla e"><i></i>Enero a junio · Julio a noviembre</span>
   <h2 class="titulo e" style="--d:1">Antes y ahora, <em>en los equipos que fallaron</em>.</h2>
   <p class="sub e" style="--d:2">Bombas del agua y drenaje, planta de luz, contra incendio y cámaras.</p>
@@ -386,11 +415,11 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 </div></section>
 
 <!-- 5 · LO QUE SIGUE -->
-<section class="lamina" data-seccion="Lo que sigue"><div class="lienzo">
+<section class="lamina" data-seccion="Lo que sigue" data-det="autoriza"><div class="lienzo">
   <span class="pastilla e"><i></i>Próximos meses</span>
   <h2 class="titulo e" style="--d:1">Lo que <em>sigue</em>.</h2>
   <div class="sigue">
-    <div class="paso vidrio e" style="--d:2"><span class="chip oro"><i></i>En instalación</span><h3>Tercera bomba del agua</h3><p>Para tener una de respaldo.</p><span class="cifra oro">$26,082<small>cotizado</small></span></div>
+    <div class="paso vidrio e" style="--d:2"><span class="chip ok"><i></i>Ya pagada · en instalación</span><h3>Tercera bomba del agua</h3><p>La de respaldo. Se pagó con la póliza 00091 ($20,184), ya incluida en las bombas del agua.</p><span class="cifra ok-c">Pagada<small>30 de octubre</small></span></div>
     <div class="paso vidrio e" style="--d:3;border-color:var(--oro-borde)"><span class="chip oro"><i></i>Se pide su aprobación</span><h3>Piezas de los elevadores</h3><p>Para no esperar semanas si uno falla.</p><span class="cifra oro">$88,135<small>por aprobar</small></span></div>
     <div class="paso vidrio e" style="--d:4"><span class="chip"><i></i>Por cotizar</span><h3>Válvulas de la azotea</h3><p>Las 3 tienen fuga.</p><span class="cifra" style="font-size:30px;color:var(--tinta-2)">Sin precio<small>aún</small></span></div>
     <div class="paso vidrio e" style="--d:5"><span class="chip"><i></i>Por cotizar</span><h3>Cisternas y humedad</h3><p>Lavado de cisternas y fachada.</p><span class="cifra" style="font-size:30px;color:var(--tinta-2)">Sin precio<small>aún</small></span></div>
@@ -400,8 +429,29 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 </main>
 
 <div class="girar vidrio" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M3 12a9 9 0 0 1 3-6.7M21 12a9 9 0 0 1-3 6.7"/></svg>Gira el teléfono para verla más grande</div>
+
+<div class="detalle" id="detalle" role="dialog" aria-modal="true" aria-labelledby="det-titulo" hidden>
+  <div class="det-caja vidrio">
+    <div class="det-top">
+      <h2 id="det-titulo">Detalle</h2>
+      <div class="det-tabs" role="tablist">
+        <button role="tab" data-p="polizas">Pólizas jul–nov</button>
+        <button role="tab" data-p="enejun">Enero a junio</button>
+        <button role="tab" data-p="notariales">Gastos notariales</button>
+        <button role="tab" data-p="autoriza">Autorizaciones</button>
+      </div>
+      <button class="det-cerrar" id="det-cerrar" type="button" aria-label="Cerrar detalle">✕ Cerrar</button>
+    </div>
+    <div class="det-cuerpo">
+      <section data-p="polizas"><p class="det-nota">Montos pagados según los estados de cuenta del banco. Solo reparaciones; sin pagos fijos de cada mes.</p><table class="dt"><tr><th>Póliza</th><th>Concepto</th><th>Pago</th><th class="n">Monto</th></tr><tr class="g"><td colspan="3">Julio</td><td class="n">$12,461.08</td></tr><tr><td class="f">00005</td><td>Herramienta de mantenimiento</td><td>22 jul</td><td class="n">8,691.08</td></tr><tr><td class="f">00017</td><td>Bomba de riego 2 HP</td><td>28 ago</td><td class="n">3,770.00</td></tr><tr class="g"><td colspan="3">Agosto</td><td class="n">$23,604.98</td></tr><tr><td class="f">—</td><td>Baterías de la planta de luz</td><td>20 ago</td><td class="n">12,704.98</td></tr><tr><td class="f">00034</td><td>Bomba nueva del drenaje (cárcamo)</td><td>28 ago</td><td class="n">8,000.00</td></tr><tr><td class="f">00031</td><td>Reparación de la bomba del drenaje</td><td>1 sep</td><td class="n">2,900.00</td></tr><tr class="g"><td colspan="3">Septiembre</td><td class="n">$5,356.17</td></tr><tr><td class="f">00045</td><td>Bomba para aspirar la alberca</td><td>15 sep</td><td class="n">2,666.34</td></tr><tr><td class="f">00037</td><td>Kit de la bomba del drenaje</td><td>15 sep</td><td class="n">1,399.00</td></tr><tr><td class="f">00050 y 51</td><td>Manguera y tubería de la alberca</td><td>21 sep</td><td class="n">1,290.83</td></tr><tr class="g"><td colspan="3">Octubre y noviembre</td><td class="n">$209,950.04</td></tr><tr><td class="f">00073</td><td>Bomba del agua y tanque presurizado</td><td>16 oct</td><td class="n">23,121.12</td></tr><tr><td class="f">00090</td><td>3 impulsores para las bombas del agua</td><td>30 oct</td><td class="n">25,056.00</td></tr><tr><td class="f">00091</td><td>Embobinado del motor de una bomba del agua</td><td>30 oct</td><td class="n">20,184.00</td></tr><tr><td class="f">00089</td><td>Mantenimiento mayor de la planta de luz</td><td>10 nov</td><td class="n">26,124.36</td></tr><tr><td class="f">00082</td><td>Equipo para grabar las cámaras</td><td>11 nov</td><td class="n">36,526.99</td></tr><tr><td class="f">00081</td><td>Mantenimiento anual contra incendio</td><td>26 oct y 5 nov</td><td class="n">25,984.00</td></tr><tr><td class="f">00063</td><td>Recarga de 70 extintores</td><td>8 oct</td><td class="n">17,684.20</td></tr><tr><td class="f">00074 y 85</td><td>Cristales de gabinetes de hidrante</td><td>16 y 30 oct</td><td class="n">1,218.00</td></tr><tr><td class="f">00062, 79 y 83</td><td>Pulido de mármol y pintura</td><td>9 a 26 oct</td><td class="n">17,199.72</td></tr><tr><td class="f">00077 y 80</td><td>Lámparas y bomba de la alberca</td><td>20 y 26 oct</td><td class="n">9,311.65</td></tr><tr><td class="f">00088</td><td>Cambio de vidrios (falta pagar la mitad)</td><td>10 nov</td><td class="n">7,540.00</td></tr><tr class="t"><td colspan="3">Total julio a noviembre</td><td class="n">$251,372.27</td></tr></table></section>
+      <section data-p="enejun"><p class="det-nota">Administración anterior. Pagos según los estados de cuenta del banco.</p><table class="dt"><tr><th>Fecha</th><th>Concepto</th><th>A quién</th><th class="n">Monto</th></tr><tr class="g"><td colspan="3">Enero</td><td class="n">$4,687.93</td></tr><tr><td class="f">2 ene</td><td>2 medidores de gas</td><td>Norka Marrufo</td><td class="n">4,687.93</td></tr><tr class="g"><td colspan="3">Febrero</td><td class="n">$38,943.30</td></tr><tr><td class="f">5 feb</td><td>Banda para el sótano</td><td>Carlos Joel</td><td class="n">300.00</td></tr><tr><td class="f">12 feb</td><td>Regulador de gas (anticipo)</td><td>Norka Marrufo</td><td class="n">31,124.67</td></tr><tr><td class="f">17 feb</td><td>Rejillas (3 piezas)</td><td>—</td><td class="n">3,122.63</td></tr><tr><td class="f">26 feb</td><td>Fluxómetro de baño</td><td>Carlos Joel</td><td class="n">4,396.00</td></tr><tr class="g"><td colspan="3">Marzo</td><td class="n">$30,237.12</td></tr><tr><td class="f">5 mar</td><td>Finiquito de rejillas</td><td>—</td><td class="n">2,467.20</td></tr><tr><td class="f">5 mar</td><td>Luminarias LED</td><td>Mariela Yanet</td><td class="n">6,146.05</td></tr><tr><td class="f">5 mar</td><td>Finiquito del regulador de gas</td><td>Norka Marrufo</td><td class="n">13,339.15</td></tr><tr><td class="f">5 mar</td><td>Arreglo del control de acceso</td><td>Puertas Automáticas</td><td class="n">522.00</td></tr><tr><td class="f">13 mar</td><td>Tablero del drenaje (cárcamo)</td><td>BMR Water</td><td class="n">5,800.00</td></tr><tr><td class="f">13 mar</td><td>No-break de lectoras</td><td>Puertas Automáticas</td><td class="n">1,962.72</td></tr><tr class="g"><td colspan="3">Abril</td><td class="n">$25,292.05</td></tr><tr><td class="f">27 abr</td><td>Reparaciones (sin detalle)</td><td>Carlos Joel</td><td class="n">3,050.05</td></tr><tr><td class="f">27 abr</td><td>Reparaciones (sin detalle)</td><td>BMR Water</td><td class="n">10,469.00</td></tr><tr><td class="f">30 abr</td><td>Material de albañilería y pintura*</td><td>—</td><td class="n">11,773.00</td></tr><tr class="g"><td colspan="3">Mayo</td><td class="n">$30,117.16</td></tr><tr><td class="f">11 may</td><td>Minipostes (anticipo)</td><td>Jesús Omar</td><td class="n">9,300.00</td></tr><tr><td class="f">29 may</td><td>Minipostes (liquidación)</td><td>Jesús Omar</td><td class="n">8,100.00</td></tr><tr><td class="f">29 may</td><td>Equipo de control de acceso</td><td>Puertas Automáticas</td><td class="n">2,217.16</td></tr><tr><td class="f">29 may</td><td>Corte de ceiba</td><td>Wilbeth Israel</td><td class="n">10,500.00</td></tr><tr class="g"><td colspan="3">Junio</td><td class="n">$62,924.99</td></tr><tr><td class="f">3 jun</td><td>Contactor del estacionamiento</td><td>Consorcio</td><td class="n">1,610.44</td></tr><tr><td class="f">16 jun</td><td>Muro de caseta, alberca y lobby</td><td>—</td><td class="n">2,957.00</td></tr><tr><td class="f">16 jun</td><td>Compra para la planta de luz</td><td>Reembolso</td><td class="n">574.00</td></tr><tr><td class="f">16 jun</td><td>Luminaria de la alberca</td><td>Mariela Yanet</td><td class="n">26,483.51</td></tr><tr><td class="f">16 jun</td><td>Material para lámparas de alberca</td><td>Ferretería</td><td class="n">3,340.51</td></tr><tr><td class="f">25 jun</td><td>Luminarias, 1a etapa</td><td>Mariela Yanet</td><td class="n">19,761.33</td></tr><tr><td class="f">25 jun</td><td>Baterías contra incendio</td><td>Reembolso</td><td class="n">7,400.00</td></tr><tr><td class="f">25 jun</td><td>Mangueras de riego</td><td>Reembolso</td><td class="n">798.20</td></tr><tr class="t"><td colspan="3">Total enero a junio</td><td class="n">$192,202.55</td></tr></table><p class="det-nota">* Se pagó dos veces (30 abr y 7 may) y se reembolsó el 5 jun: se cuenta una vez. Las dos «reparaciones sin detalle» del 27 abr no dicen en el banco qué se reparó.</p></section>
+      <section data-p="notariales"><p class="det-nota">Actas y trámites que estaban atrasados. El acta de noviembre de 2025 llevaba casi un año sin protocolizar.</p><table class="dt"><tr><th>Póliza</th><th>Concepto</th><th>Pago</th><th class="n">Monto</th></tr><tr><td class="f">00055</td><td>Acta de asamblea de noviembre 2025</td><td>24 sep</td><td class="n">12,592.00</td></tr><tr><td class="f">00046</td><td>Acta de asamblea del 28 de junio 2026</td><td>24 sep</td><td class="n">15,000.00</td></tr><tr><td class="f">00072</td><td>Segundo testimonio notarial</td><td>7 oct</td><td class="n">2,000.00</td></tr><tr><td class="f">00056</td><td>Fe de hechos del inventario y la oficina</td><td>17 nov</td><td class="n">10,000.00</td></tr><tr><td class="f">00057</td><td>Notificación notarial de remoción</td><td>17 nov</td><td class="n">8,500.00</td></tr><tr class="t"><td colspan="3">Total 2026</td><td class="n">$48,092.00</td></tr></table></section>
+      <section data-p="autoriza"><p class="det-nota">Mantenimientos firmados por el Comité de Vigilancia en dos sesiones, cada uno por al menos 3 de sus integrantes.</p><table class="dt"><tr><th>Póliza</th><th>Concepto</th><th></th><th class="n">Monto</th></tr><tr class="g"><td colspan="3">Sesión del 2 de octubre · 4 gastos</td><td class="n">$48,229.32</td></tr><tr><td class="f">00073</td><td>Bomba del agua y tanque presurizado</td><td>—</td><td class="n">23,121.12</td></tr><tr><td class="f">00063</td><td>Recarga de 70 extintores</td><td>—</td><td class="n">17,684.20</td></tr><tr><td class="f">00062</td><td>Pulido de 100 m² de mármol</td><td>—</td><td class="n">6,612.00</td></tr><tr><td class="f">00074</td><td>Cristales de gabinete de hidrante</td><td>—</td><td class="n">812.00</td></tr><tr class="g"><td colspan="3">Sesión del 27 de octubre · 5 gastos</td><td class="n">$79,310.36</td></tr><tr><td class="f">00089</td><td>Mantenimiento mayor de la planta de luz</td><td>—</td><td class="n">26,124.36</td></tr><tr><td class="f">00090</td><td>3 impulsores para las bombas del agua</td><td>—</td><td class="n">25,056.00</td></tr><tr><td class="f">00091</td><td>Embobinado del motor de una bomba</td><td>—</td><td class="n">20,184.00</td></tr><tr><td class="f">00088</td><td>Cambio de vidrios (2 juegos)</td><td>—</td><td class="n">7,540.00</td></tr><tr><td class="f">00085</td><td>Tercer cristal de hidrante</td><td>—</td><td class="n">406.00</td></tr><tr class="t"><td colspan="3">Total autorizado en las dos sesiones</td><td class="n">$127,539.68</td></tr></table></section>
+    </div>
+  </div>
+</div>
 <footer class="pie">
-  <span class="lugar">ASAMBLEA GENERAL · 21 NOV 2026</span>
+  <button class="ver-det vidrio" id="ver-det" type="button"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Ver detalle</button>
   <div class="puntos" id="puntos"></div>
   <nav class="mandos">
     <button class="vidrio" id="prev" type="button" aria-label="Lámina anterior"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
@@ -491,9 +541,26 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
   }
   window.irLamina = ir;
 
+
+  /* Panel de detalle */
+  const $det = $("detalle"), $verDet = $("ver-det"), $cerrar = $("det-cerrar");
+  const pestañas = [...document.querySelectorAll(".det-tabs button")];
+  const secciones = [...document.querySelectorAll(".det-cuerpo section")];
+  function verPestaña(p) {
+    pestañas.forEach((b) => b.setAttribute("aria-selected", b.dataset.p === p));
+    secciones.forEach((s) => s.classList.toggle("on", s.dataset.p === p));
+    document.querySelector(".det-cuerpo").scrollTop = 0;
+  }
+  function abrirDet() { verPestaña(laminas[i].dataset.det || "polizas"); $det.hidden = false; $cerrar.focus(); }
+  function cerrarDet() { $det.hidden = true; $verDet.focus(); }
+  $verDet.onclick = abrirDet; $cerrar.onclick = cerrarDet;
+  pestañas.forEach((b) => b.onclick = () => verPestaña(b.dataset.p));
+  $det.addEventListener("click", (e) => { if (e.target === $det) cerrarDet(); });
   $prev.onclick = () => ir(i - 1);
   $next.onclick = () => ir(i + 1);
   document.addEventListener("keydown", (e) => {
+    if (!$det.hidden) { if (e.key === "Escape") cerrarDet(); return; }
+    if (e.key === "d" || e.key === "D") { abrirDet(); return; }
     if (e.target.closest && e.target.closest(".puntos")) return;
     if (["ArrowRight", "PageDown", " "].includes(e.key)) { e.preventDefault(); ir(i + 1); }
     if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); ir(i - 1); }
@@ -509,7 +576,7 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
   let x0 = null, y0 = null;
   document.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
   document.addEventListener("touchend", (e) => {
-    if (x0 === null) return;
+    if (x0 === null || !$det.hidden) return;
     const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
     if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) ir(i + (dx < 0 ? 1 : -1));
     x0 = y0 = null;
