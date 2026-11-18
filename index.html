@@ -297,6 +297,12 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 .dt .t td{font-weight:800;border-bottom:none;border-top:2px solid var(--oro-borde);font-size:1.1em}
 .dt .t .n{color:var(--oro)}
 @media (max-width:700px){.ver-det{height:46px;padding:0 16px;font-size:16px}.dt td:nth-child(3),.dt th:nth-child(3){display:none}}
+.col-hero{display:flex;flex-direction:column;gap:22px}
+.col-hero .cifra-hero{padding:36px 44px}
+.notar{border-radius:26px;padding:26px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.notar b{display:block;font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:var(--oro);margin-bottom:6px}
+.notar span{display:block;font-size:24px;line-height:1.35;color:var(--tinta-2)}
+.notar em{font-style:normal;font-weight:800;font-size:52px;color:var(--oro);white-space:nowrap;letter-spacing:-.02em}
 /* Animación de entrada */
 @keyframes entra{from{opacity:0;transform:translateY(16px)}}
 @keyframes crece-y{from{transform:scaleY(0)}}
@@ -353,10 +359,13 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
       <h1 class="e" style="--d:1">¿En qué se usó<br>el dinero de<br><em>mantenimiento</em>?</h1>
       <p class="bajada e" style="--d:2">Reparaciones de Torre Oceana, de enero a noviembre de 2026.</p>
     </div>
+    <div class="col-hero">
     <div class="cifra-hero vidrio e" style="--d:3">
       <span class="grande">$<span data-cuenta="443575">443,575</span></span>
       <p>en <b>reparaciones</b> de enero a noviembre.</p>
       <p style="font-size:24px">No incluye pagos fijos de cada mes: luz, agua, elevadores, limpieza, vigilancia ni jardinería.</p>
+    </div>
+    <div class="notar vidrio e" style="--d:4"><div><b>Además</b><span>Gastos notariales: actas de asamblea y trámites que estaban atrasados.</span></div><em>$48,092</em></div>
     </div>
   </div>
 </div></section>
@@ -378,7 +387,7 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 <!-- 3 · 8 DE CADA 10 -->
 <section class="lamina" data-seccion="Por qué se gastó" data-det="polizas"><div class="lienzo">
   <span class="pastilla e"><i></i>Julio a noviembre 2026</span>
-  <h2 class="titulo e" style="--d:1">8 de cada 10 pesos <em>fueron para lo urgente</em>.</h2>
+  <h2 class="titulo e" style="--d:1">8 de cada 10 pesos <em>fueron a equipos dañados</em>.</h2>
   <div class="ochenta">
     <div class="e" style="--d:2"><div class="dona"><svg viewBox="0 0 120 120"><circle class="fondo" cx="60" cy="60" r="48"/><circle class="arco" cx="60" cy="60" r="48" pathLength="100"/></svg>
       <div class="centro"><div><b><span data-cuenta="80">80</span>%</b><small>equipos dañados</small></div></div></div></div>
