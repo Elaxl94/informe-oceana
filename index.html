@@ -344,6 +344,14 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
 @media (max-width:700px){.nav-btn span,.lx-btn{font-size:15px}.nav-btn{height:44px!important;padding:0 14px 0 10px}.nav-btn.sig{padding:0 10px 0 16px}.lx-btn{height:44px;padding:0 14px 0 12px}.cabecera .logo{height:16px}.redondo{width:36px;height:36px}}
 @media (max-width:520px){.nav-btn span{display:none}.nav-btn,.nav-btn.sig{padding:0 10px!important}}
 @media (max-height:500px){.pie{height:56px}.nav-btn{height:40px!important}.lx-btn{height:40px;bottom:8px}.mandos{bottom:8px}.puntos{bottom:14px}.cabecera{padding-top:10px}}
+
+/* Las dos tarjetas de la portada se inclinan juntas, como un solo bloque */
+.tilt-grupo{transform:perspective(1800px) rotateY(-7deg) rotateX(1.5deg);transform-origin:50% 50%}
+:root[data-modo="claro"] .sombra-p{box-shadow:0 46px 70px -40px rgba(70,48,16,.40),inset 0 1px 0 rgba(255,255,255,.8)}
+:root:not([data-modo="claro"]) .sombra-p{box-shadow:0 46px 70px -40px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06)}
+/* Panel de detalle: fondo sólido en los tres colores (que no se transparente la lámina) */
+.det-caja.vidrio,:root[data-modo="claro"] .det-caja.vidrio,:root[data-modo="azul"] .det-caja.vidrio{background:var(--fondo);-webkit-backdrop-filter:none;backdrop-filter:none}
+:root[data-modo="claro"] .det-caja.vidrio{box-shadow:0 30px 80px -30px rgba(70,48,16,.35)}
 /* Animación de entrada */
 @keyframes entra{from{opacity:0;transform:translateY(16px)}}
 @keyframes crece-y{from{transform:scaleY(0)}}
@@ -401,13 +409,13 @@ body{font-family:var(--letra);color:var(--tinta);background:var(--fondo);overflo
       <h1 class="e" style="--d:1">¿En qué se usó<br>el dinero de<br><em>mantenimiento</em>?</h1>
       <p class="bajada e" style="--d:2">Reparaciones de Torre Oceana, de enero a noviembre de 2026.</p>
     </div>
-    <div class="col-hero">
-    <div class="cifra-hero vidrio tilt e" style="--d:3">
+    <div class="col-hero tilt-grupo">
+    <div class="cifra-hero vidrio sombra-p e" style="--d:3">
       <span class="grande">$<span data-cuenta="443575">443,575</span></span>
       <p>en <b>reparaciones</b> de enero a noviembre.</p>
       <p style="font-size:24px">No incluye pagos fijos de cada mes: luz, agua, elevadores, limpieza, vigilancia ni jardinería.</p>
     </div>
-    <div class="notar vidrio tilt e" style="--d:4"><div><b>Además</b><span>Gastos notariales: actas de asamblea y trámites que estaban atrasados.</span></div><em>$48,092</em></div>
+    <div class="notar vidrio sombra-p e" style="--d:4"><div><b>Además</b><span>Gastos notariales: actas de asamblea y trámites que estaban atrasados.</span></div><em>$48,092</em></div>
     </div>
   </div>
 </div></section>
